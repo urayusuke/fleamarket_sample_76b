@@ -1,0 +1,10 @@
+@mixin user-sign-form {
+  height: 46px;
+  border: 1px solid #ADADAD;
+  border-radius: 8px;
+  outline: none;
+  padding: 10px;
+  &:focus {
+    box-shadow:0 0 0 2px #3CCACE;
+  }
+}
