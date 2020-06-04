@@ -1,3 +1,44 @@
 .user-show
-  .user-show__menu
-  .user-show__contents
+  .user-show__side
+    .user-show__side__menu
+      %h2.user-show__side__menu__title マイページメニュー
+      =link_to "お知らせ", root_path, class: "user-show__side__menu__select"
+      =link_to "いいねした商品", root_path, class: "user-show__side__menu__select"
+        
+    .user-show__side__sell
+      %h2.user-show__side__menu__title 商品を出品する
+      =link_to "商品を出品する", root_path, class: "user-show__side__menu__select"
+      =link_to "出品した商品", root_path, class: "user-show__side__menu__select"
+
+    .user-show__side__purchase
+      %h2.user-show__side__menu__title 商品を購入する
+      =link_to "購入した商品", root_path, class: "user-show__side__menu__select"
+      =link_to "最近見た商品", root_path, class: "user-show__side__menu__select"
+      =link_to "コメントした商品", root_path, class: "user-show__side__menu__select"
+      
+    .user-show__side__cog
+      %h2.user-show__side__menu__title 設定・その他
+      =link_to "会員情報", root_path, class: "user-show__side__menu__select"
+      =link_to "お届け先情報", root_path, class: "user-show__side__menu__select"
+      =link_to "お支払情報", root_path, class: "user-show__side__menu__select"
+      =link_to "ログアウト", logout_user_path, class: "user-show__side__menu__select"
+
+  .user-show__products
+    %h2 出品した商品
+    = link_to root_path, class: "user-show__products__link" do
+      .user-show__products__link__selling
+        .user-show__products__link__selling__img
+          = image_tag "https://picsum.photos/200/200", size: "60x60"
+        .user-show__products__link__selling__info
+          %p.user-show__products__link__selling__info__name 商品の名前
+          %span.user-show__products__link__selling__info__heart
+          = icon("far", "heart")
+          1
+          %span.user-show__products__link__selling__info__comment
+          = icon("far", "comment")
+          1
+          %span.user-show__products__link__selling__info__status
+          出品中
+        .user-show__products__link__selling__next
+          %span
+          = icon("fa", "angle-right")

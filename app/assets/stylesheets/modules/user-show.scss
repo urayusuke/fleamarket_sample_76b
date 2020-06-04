@@ -1,14 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F8F8F8;
+}
+
+// ここから上はマージのときに消す
+// ------------------------------------
+
+@mixin user-show-title {
+  font-size: 1.1rem;
+  padding-left: 8px;
+}
+@mixin user-show-select {
+  padding: 16px 8px;
+  background-color: #fff;
+  border-bottom: solid 1px#F8F8F8;
+  font-size: 0.9rem;
+  display: block;
+  color: $main-color;
+  text-decoration: none;
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}
+
 .user-show {
   width: 1100px;
   display: flex;
+  margin: 0 auto;
+  padding: 32px 16px;
 }
-.user-show__menu {
+
+// サイドメニュー
+// ------------------------------------
+.user-show__side {
   width: 30%;
-  height: 100%;
-  background-color: orange;
+  padding: 8px;
 }
-.user-show__contents {
+.user-show__side__menu__title {
+  @include user-show-title;
+}
+.user-show__side__menu__select {
+  @include user-show-select;
+}
+
+
+
+// 出品した商品一覧
+// ------------------------------------
+.user-show__products {
   width: 70%;
-  height: 100%;
-  background-color: yellow;
+  & h2 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    margin-left: 24px;
+    font-size: 1.1rem;
+  }
+  &__link {
+    text-decoration: none;
+    &__selling {
+      width: 95%;
+      height: 80px;
+      display: flex;
+      margin: 0 auto;
+      background-color: #fff;
+      color: #000;
+      border-bottom: solid 1px #F8F8F8;
+      &:hover {
+        background-color: #f5f5f5;
+      }
+      &__img {
+        width: 15%;
+        text-align: center;
+        line-height: 80px;
+      }
+      
+      &__info {
+        width: 75%;
+        padding: 0 8px;
+        &__name {
+          margin-bottom: 0;
+        }
+      }
+      &__next {
+        width: 10%;
+        text-align: center;
+        & span {
+          line-height: 80px;
+        }
+      }
+    }
+  }
 }
