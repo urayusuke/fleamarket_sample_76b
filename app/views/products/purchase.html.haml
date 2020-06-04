@@ -1,0 +1,68 @@
+= render partial: "header_sub"
+
+.purchase-main
+  .purchase-container
+    %h1.purchase__title
+      購入内容の確認
+    .purchase-product
+      .purchase-product__inner
+        .purchase-product__box
+          = image_tag "material/icon/icon-01.png", class:"purchase-product__box__image"
+          .purchase-product__box__detail
+            %p.purchase-product__box__detail__buy-name
+              テックキャンプ
+            %span.purchase-product__box__detail__product-fee ¥100
+            %span.purchase-product__box__detail__shipping-fee （税込）送料込み
+    .purchase-option
+      .purchase-option__inner
+        .purchase-option__box
+          .purchase-option__box__payment
+            .purchase-option__box__payment__left
+              支払い金額
+            .purchase-option__box__payment__right
+              ¥100
+          .purchase-option__box__credit
+            .purchase-option__box__credit__method
+              .purchase-option__box__credit__method__left
+                お支払い方法
+              -# = link_to "#" ,class:"purchase-option__box__credit__method__right" do
+              -#   変更する
+                
+            // 支払い方法登録済        
+            -# .purchase-option__box__credit__text
+            -#   %p.purchase-option__box__credit__text__type
+            -#     クレジットカード 
+            -#   %p.purchase-option__box__credit__text__credit-number  
+            -#     ********0000
+            -#   %p.purchase-option__box__credit__text__use-limit
+            -#     有効期限 01/01
+
+            // 支払い方法登録なし
+            = link_to "#", class:"purchase-option__box__credit__btn" do
+              支払い方法を入力してください
+
+          .purchase-option__box__delivery
+            .purchase-option__box__delivery__method
+              .purchase-option__box__delivery__method__left
+                配送先
+              = link_to "#" ,class:"purchase-option__box__delivery__method__right" do
+                変更する
+
+            // 配送先登録済      
+            .purchase-option__box__delivery__text
+              %p.purchase-option__box__delivery__text__post-number
+                〒000-0000
+              %p.purchase-option__box__delivery__text__address 
+                大阪府大阪市中央区難波5-1-60
+              %p.purchase-option__box__delivery__text__name
+                テックキャンプ
+
+            // 配送先登録なし
+            -# = link_to "#", class:"purchase-option__box__delivery__btn" do
+            -#   配送先を入力してください
+
+          .purchase-option__box__submit
+            = link_to "#", class:"purchase-option__box__submit__btn" do
+              購入する   
+        
+= render partial: "footer_sub"
