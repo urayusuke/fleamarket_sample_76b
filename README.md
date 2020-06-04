@@ -1,30 +1,97 @@
-# README
-# hello
-# world
-# hiraoka
-# love
-# dance
-# ura
+# フリマアプリ_DB設計　(76期/チームB) 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## ①usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|nickname|string|null: false|
+|email|string|null: false|
+|password|string|null: false|
+|last_name|string|null: false|
+|first_name|string|null: false|
+|last_name_kana|string|null: false|
+|first_name_kana|string|null: false|
+|birthday|date|null: false|
 
-* Ruby version
+### Association
+- has_many :products
+- has_one :address
+- has_one :credit
 
-* System dependencies
+### index
+- add_index :users, :email,unique: true
 
-* Configuration
+## ②productsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|name|string|null: false|
+|content|string|null: false|
+|bland_name|string||
+|status|string|null: false|
+|price|integer|null: false|
+|delively_cost|string|null: false|
+|delively_prefecture|string|null: false|
+|delively_days|string|null: false|
 
-* Database creation
+### Association
+- belongs_to :user
+- has_many :product_categories
+- has_many :categories, through: :product_categories
+- has_many :images
 
-* Database initialization
+## ③product_categoriesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|product_id|integer|null: false, foreign_key: true|
+|category_id|integer|null: false, foreign_key: true|
 
-* How to run the test suite
+### Association
+- belongs_to :product
+- belongs_to :category
 
-* Services (job queues, cache servers, search engines, etc.)
+## ④categoriesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
 
-* Deployment instructions
+### Association
+- has_many :product_categories
+- has_many :products, through: :product_categories
 
-* ...
+## ⑤imagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|product_id|integer|null: false, foreign_key: true|
+|name|string|null: false|
+
+### Association
+- belongs_to :product
+
+## ⑥addressesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|delively_last_name|string|null: false|
+|delively_first_name|string|null: false|
+|delively_last_name_kana|string|null: false|
+|delively_first_name_kana|string|null: false|
+|postcode|string|null: false|
+|prefecture|string|null: false|
+|city|string|null: false|
+|block|string|null: false|
+|building|string||
+|phone_number|string||
+
+### Association
+- belongs_to :user
+
+## ⑦creditsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|code|string|null: false|
+
+### Association
+- belongs_to :user
+
