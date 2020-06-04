@@ -3,4 +3,6 @@
 @import "font-awesome";
 @import "./config/variable";
 @import "./mixin/mixin";
-@import "products";
+@import "./modules/products";
+@import "./modules/purchase";
+@import "./modules/users";

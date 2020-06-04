@@ -3,4 +3,9 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products
   resources :users
+  resources :addresses, only: :new do
+    collection do
+      get "create_page"
+    end
+  end
 end

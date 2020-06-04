@@ -1,0 +1,35 @@
+-# %h2 Log in
+-# = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+-#   .field
+-#     = f.label :email
+-#     %br/
+-#     = f.email_field :email, autofocus: true, autocomplete: "email"
+-#   .field
+-#     = f.label :password
+-#     %br/
+-#     = f.password_field :password, autocomplete: "current-password"
+-#   - if devise_mapping.rememberable?
+-#     .field
+-#       = f.check_box :remember_me
+-#       = f.label :remember_me
+-#   .actions
+-#     = f.submit "Log in"
+-# = render "devise/shared/links"
+.user-sign
+  .user-sign__head
+    .user-sign__head__logo
+      = link_to image_tag("/assets/material/logo/logo.png", size: "160x100",alt: "サンプル画像"), "#"
+  .user-sign__form
+    %h2 ログイン
+    .user-sign__form__field
+      %label メールアドレス
+      %br/
+      %input{type: "text", autocomplete: "email", placeholder: "メールアドレスを入力してください", autofocus: true, class: "user-sign__form__field__text-form"} 
+    .user-sign__form__field
+      %label パスワード
+      %br/
+      %input{type: "text", autocomplete: "new-password", placeholder: "パスワードを入力してください", class: "user-sign__form__field__text-form"} 
+    .user-sign__form__submit
+      %input{type: "submit", value: "ログイン", class: "user-sign__form__submit__btn"}
+= render partial: "./products/footer_sub"
+
