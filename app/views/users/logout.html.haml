@@ -1,3 +1,5 @@
+= render partial: "products/header"
+
 .user-show
   = render partial: 'user-show__side'
 
@@ -5,3 +7,5 @@
     .user-show__logout__area
       = link_to destroy_user_session_path do
         %button.user-show__logout__area__btn ログアウト
+
+= render partial: "products/footer"
