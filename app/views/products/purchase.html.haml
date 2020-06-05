@@ -25,10 +25,12 @@
             .purchase-option__box__credit__method
               .purchase-option__box__credit__method__left
                 お支払い方法
+
+              //支払い方法登録済  
               -# = link_to "#" ,class:"purchase-option__box__credit__method__right" do
               -#   変更する
-                
-            // 支払い方法登録済        
+
+            //支払い方法登録済        
             -# .purchase-option__box__credit__text
             -#   %p.purchase-option__box__credit__text__type
             -#     クレジットカード 
@@ -45,6 +47,8 @@
             .purchase-option__box__delivery__method
               .purchase-option__box__delivery__method__left
                 配送先
+
+              //配送先登録済  
               = link_to "#" ,class:"purchase-option__box__delivery__method__right" do
                 変更する
 
