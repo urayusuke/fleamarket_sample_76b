@@ -10,10 +10,9 @@
       %br フリマアプリです
     .headline__text-link
       %P.headline__text-link-app
-        %a{:href => "#", :style => "display:inline-block;background:url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2013-07-22&kind=iossoftware&bubble=ios_apps) no-repeat;width:190px;height:60px;background-size:contain;"}
+        =link_to image_tag("https://linkmaker.itunes.apple.com/assets/shared/badges/ja-jp/appstore-lrg.svg",size: '190x60'),"#"
       %p.headline__text-link-google
-        %a{:href => "#"}
-          %img{:alt => "Google Play で手に入れよう", :src => "https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png"}
+        =link_to image_tag("https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png"),"#"
 
 .reason
   .reason__title
@@ -60,10 +59,10 @@
       %br ほしかったあの商品に出会えるかもしれません。
     .grade__text-link
       %P.grade__text-link-app
-        %a{:href => "#", :style => "display:inline-block;background:url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2013-07-22&kind=iossoftware&bubble=ios_apps) no-repeat;width:190px;height:60px;background-size:contain;"}
+        =link_to image_tag("https://linkmaker.itunes.apple.com/assets/shared/badges/ja-jp/appstore-lrg.svg",size: '190x60'),"#"
       %P.grade__text-link-google
-        %a{:href => "#"}
-          %img{:alt => "Google Play で手に入れよう", :src => "https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png"}
+        =link_to image_tag("https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png"),"#"
+
 
 .feature
   .feature__title
@@ -98,7 +97,7 @@
     %h3 新規投稿商品
   .category__text
     .category__text__space
-      = image_tag src="/assets/material/pict/bg-appBanner-pict.jpg", class: "category__text__space__image"
+      = image_tag "/assets/material/pict/bg-appBanner-pict.jpg", class: "category__text__space__image"
       .category__text__space__name
         %p product3
       .category__text__space__price
@@ -106,7 +105,7 @@
       .category__text__space__tax
         %p (税込)
     .category__text__space
-      = image_tag src="/assets/material/pict/bg-appBanner-pict.jpg", class: "category__text__space__image"
+      = image_tag "/assets/material/pict/bg-appBanner-pict.jpg", class: "category__text__space__image"
       .category__text__space__name
         %p product2
       .category__text__space__price
@@ -114,7 +113,7 @@
       .category__text__space__tax
         %p (税込)
     .category__text__space
-      = image_tag src="/assets/material/pict/bg-appBanner-pict.jpg", class: "category__text__space__image"
+      = image_tag "/assets/material/pict/bg-appBanner-pict.jpg", class: "category__text__space__image"
       .category__text__space__name
         %p product1
       .category__text__space__price
@@ -126,7 +125,7 @@
     %h3 アーカイバ
   .category__text
     .category__text__space
-      = image_tag src="/assets/material/pict/bg-appBanner-pict.jpg", class: "category__text__space__image"
+      = image_tag "/assets/material/pict/bg-appBanner-pict.jpg", class: "category__text__space__image"
       .category__text__space__name
         %p product3
       .category__text__space__price
@@ -134,7 +133,7 @@
       .category__text__space__tax
         %p (税込)
     .category__text__space
-      = image_tag src="/assets/material/pict/bg-appBanner-pict.jpg", class: "category__text__space__image"
+      = image_tag "/assets/material/pict/bg-appBanner-pict.jpg", class: "category__text__space__image"
       .category__text__space__name
         %p product2
       .category__text__space__price
@@ -142,7 +141,7 @@
       .category__text__space__tax
         %p (税込)
     .category__text__space
-      = image_tag src="/assets/material/pict/bg-appBanner-pict.jpg", class: "category__text__space__image"
+      = image_tag "/assets/material/pict/bg-appBanner-pict.jpg", class: "category__text__space__image"
       .category__text__space__name
         %p product1
       .category__text__space__price
@@ -157,10 +156,9 @@
     %p 今すぐ無料ダウンロード！
     .publicity__text-link
       %P.publicity__text-link-app
-        %a{:href => "#", :style => "display:inline-block;background:url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2013-07-22&kind=iossoftware&bubble=ios_apps) no-repeat;width:190px;height:60px;background-size:contain;"}
+        =link_to image_tag("https://linkmaker.itunes.apple.com/assets/shared/badges/ja-jp/appstore-lrg.svg",size: '190x60'),"#"
       %P.publicity__text-link-google
-        %a{:href => "#"}
-          %img{:alt => "Google Play で手に入れよう", :src => "https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png"}
+        =link_to image_tag("https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png"),"#"
 
 %main
   = render partial: "products/footer"
@@ -170,4 +168,4 @@
     .icon__link__title
       出品する
     .icon__link__image
-      = image_tag src="/assets/material/icon/icon_camera.png",size: "54x54", alt: "サンプル画像"
+      = image_tag "/assets/material/icon/icon_camera.png",size: "54x54", alt: "サンプル画像"
