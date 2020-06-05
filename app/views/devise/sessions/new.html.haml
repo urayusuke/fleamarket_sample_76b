@@ -1,0 +1,18 @@
+.user-sign
+  .user-sign__head
+    .user-sign__head__logo
+      = link_to image_tag("/assets/material/logo/logo.png", size: "160x100",alt: "サンプル画像"), "#"
+  .user-sign__form
+    %h2 ログイン
+    .user-sign__form__field
+      %label メールアドレス
+      %br/
+      %input{type: "text", autocomplete: "email", placeholder: "メールアドレスを入力してください", autofocus: true, class: "user-sign__form__field__text-form"} 
+    .user-sign__form__field
+      %label パスワード
+      %br/
+      %input{type: "text", autocomplete: "new-password", placeholder: "パスワードを入力してください", class: "user-sign__form__field__text-form"} 
+    .user-sign__form__submit
+      %input{type: "submit", value: "ログイン", class: "user-sign__form__submit__btn"}
+= render partial: "./products/footer_sub"
+

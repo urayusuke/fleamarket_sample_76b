@@ -7,4 +7,9 @@ Rails.application.routes.draw do
     end
   end
   resources :users
+  resources :addresses, only: :new do
+    collection do
+      get "create_page"
+    end
+  end
 end

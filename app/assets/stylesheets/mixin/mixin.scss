@@ -9,6 +9,20 @@
   }
 }
 
+@mixin user-sign-necessity {
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: white;
+}
+
+@mixin user-sign-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  background-color: #dddddd;
+}
+
 @mixin purchase-side {
   display: flex;
   justify-content: space-between;  
