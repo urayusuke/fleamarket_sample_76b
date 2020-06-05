@@ -1,0 +1,21 @@
+.header
+  .header__title
+    =image_tag "/assets/material/logo/logo.png",class:"header__title-image"
+    %input{:type => "text",class:"header__title-text"}
+    .header__title-search
+      %input{:type => "image",:src =>"/assets/material/icon/icon-search 1.png",:width => "20",:height => "20"}
+  .header__list
+    %ul.header__list-left
+      %li 
+        = link_to "カテゴリー","#",class:"header__list-left-link"
+      %li 
+        = link_to "ブランド","#",class:"header__list-left-link"
+    %ul.header__list-right
+      -if user_signed_in?
+        %li 
+          = link_to "ログアウト",destroy_user_session_path,class:"header__list-right-link",method: :destroy
+      -else
+        %li 
+          = link_to "ログイン",new_user_session_path,class:"header__list-right-link"
+        %li 
+          = link_to "新規会員登録",new_user_registration_path,class:"header__list-right-link"

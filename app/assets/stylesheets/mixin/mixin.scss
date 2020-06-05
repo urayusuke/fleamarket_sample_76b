@@ -8,3 +8,52 @@
     box-shadow:0 0 0 2px #3CCACE;
   }
 }
+
+@mixin header {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin headline__text-link {
+  &-link{
+    display: flex;
+    &-app{
+      padding-top: 14px;
+    }
+    &-google{
+      width: 220px;
+    }
+  }
+}
+
+@mixin reason__title{
+  &__title{
+    text-align: center;
+    font-size: 18px;
+    h2{
+      position: relative;
+      display: inline-block;
+      margin-bottom: 40px;
+    }
+    h2::after{
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -10px;
+      display: inline-block;
+      width: 70px;
+      height: 4px;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      background-color: $main-color;
+      border-radius: 2px;
+    }
+  }
+}
+
+@mixin header__list-link {
+  &-link{
+    text-decoration: none;
+    color: #333;
+  }
+}
