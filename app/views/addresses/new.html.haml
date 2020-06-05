@@ -1,0 +1,67 @@
+.user-sign
+  .user-sign__head
+    .user-sign__head__logo
+      = link_to image_tag("/assets/material/logo/logo.png", size: "160x100",alt: "サンプル画像"), "#"
+    .user-sign__head__progress
+      .user-sign__head__progress__top
+        .user-sign__head__progress__top__user-form--live
+          会員登録
+        .user-sign__head__progress__top__address-form--live
+          お届け先住所入力
+        .user-sign__head__progress__top__clear-form
+          完了
+      .user-sign__head__progress__bottom
+        .user-sign__head__progress__bottom__circle--live
+        .user-sign__head__progress__bottom__line--live
+        .user-sign__head__progress__bottom__circle--live
+        .user-sign__head__progress__bottom__line
+        .user-sign__head__progress__bottom__circle
+  .user-sign__form
+    %h2 お届け先情報入力
+    .user-sign__form__field--name
+      %label お届け先お名前(全角)
+      %a{class: "user-sign__form__field__necessity"} 必須
+      .user-sign__form__field--name__area
+        %input{type: "text", placeholder: "例) 難波",autofocus: true, class: "user-sign__form__field__text-form--name"}
+        %input{type: "text", placeholder: "例) 太郎", class: "user-sign__form__field__text-form--name"}
+    .user-sign__form__field--name
+      %label お届け先お名前カナ(全角)
+      %a{class: "user-sign__form__field__necessity"} 必須
+      .user-sign__form__field--name__area
+        %input{type: "text", placeholder: "例) ナンバ", class: "user-sign__form__field__text-form--name"} 
+        %input{type: "text", placeholder: "例) タロウ", class: "user-sign__form__field__text-form--name"} 
+    .user-sign__form__field
+      %label 郵便番号
+      %a{class: "user-sign__form__field__necessity"} 必須
+      %br/
+      %input{type: "text", autocomplete: "postal-code", placeholder: "例) 1234567", class: "user-sign__form__field__text-form--name"} 
+      %p{class: "user-sign__form__field__explanation"} ※ 半角入力・ハイフン無しでお願いします。
+    .user-sign__form__field
+      %label 都道府県
+      %a{class: "user-sign__form__field__necessity"} 必須
+      %br/
+      %input{type: "text", placeholder: "例) 大阪府", class: "user-sign__form__field__text-form"}
+    .user-sign__form__field
+      %label 市町村
+      %a{class: "user-sign__form__field__necessity"} 必須
+      %br/
+      %input{type: "text", placeholder: "例) 大阪市中央区", class: "user-sign__form__field__text-form"}
+    .user-sign__form__field
+      %label 番地
+      %a{class: "user-sign__form__field__necessity"} 必須
+      %br/
+      %input{type: "text", placeholder: "例) 難波５丁目１−６０", class: "user-sign__form__field__text-form"}
+    .user-sign__form__field
+      %label 建物名
+      %a{class: "user-sign__form__field__necessity--any"} 任意
+      %br/
+      %input{type: "text", placeholder: "例) なんばスカイオ 15階", class: "user-sign__form__field__text-form"} 
+    .user-sign__form__field
+      %label 電話番号
+      %a{class: "user-sign__form__field__necessity"} 必須
+      %br/
+      %input{type: "text", placeholder: "例) 05031873522", class: "user-sign__form__field__text-form"}
+      %p{class: "user-sign__form__field__explanation"} ※ 半角入力・ハイフン無しでお願いします。
+    .user-sign__form__submit
+      %input{type: "submit", value: "登録する", class: "user-sign__form__submit__btn"}
+= render partial: "./products/footer_sub"
