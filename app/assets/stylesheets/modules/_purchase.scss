@@ -1,0 +1,208 @@
+//ヘッダー
+.purchase-header {
+  height: 150px;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+   &__logo {
+    height: 50px;
+    width: 185px;
+  }
+
+   &__logo:hover {
+     opacity: 0.7;
+   }
+}
+//メイン
+.purchase-main {
+  background-color: #eee;
+  margin-top: 0;
+
+  .purchase-container {
+    width: 700px;
+    margin: 0 auto;
+    background-color: white;
+
+    .purchase__title {
+      padding: 32px;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      margin: 0;
+    } 
+
+    .purchase-product {
+      height: 145px;
+      padding: 32px 16px;
+      border-top: 1px solid #f5f5f5;
+
+      &__inner {
+        @include purchase-inner;
+
+        .purchase-product__box {
+          display: flex;
+
+          &__image {
+            height: 80px;
+            width: 80px;
+          }
+
+          &__detail {
+            margin-left: 20px;
+
+            &__buy-name {
+              font-size: 14px;
+              padding-bottom: 5px;
+            }
+
+            &__product-fee {
+              font-size: 12px;
+              font-weight: bold;
+            }
+
+            &__shipping-fee {
+              font-size: 12px;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+    
+    .purchase-option {
+    
+      padding: 32px 16px 0 16px;
+      border-top: 1px solid #f5f5f5;
+
+      &__inner {
+        @include purchase-inner;
+      }
+
+      &__box {
+        &__payment {
+          display: flex;
+
+          &__left {
+            width: 50%;
+            height: 20px;
+            padding-top: 20px;
+            font-size: 18px;
+            text-align: left;
+            font-weight: bold;
+
+          }
+
+          &__right {
+            width: 50%;
+            height: 100px;
+            padding-top: 10px;
+            font-size: 30px;
+            text-align: right;
+          }
+        }
+
+        &__credit {
+          @include purchase-border-line; 
+
+          &__method {
+            @include purchase-side;
+
+            &__left {
+              @include purchase-left-content;
+            }
+
+            &__right {
+              @include purchase-right-content;
+            }  
+          }
+
+          &__text {
+            @include purchase-detail-text;
+          }
+
+          // 支払い方法登録なし
+          &__btn {
+            @include purchase-change-btn;
+            margin-top: 32px;
+          }
+        }
+
+        &__delivery {
+          @include purchase-border-line;
+
+          &__method {
+            @include purchase-side;
+
+            &__left {
+              @include purchase-left-content;
+            }
+  
+            &__right {
+              @include purchase-right-content;
+            }  
+          }
+          　　　　　　　
+          &__text {
+            @include purchase-detail-text;
+          }
+          
+          // 配送先登録なし
+          &__btn {
+            @include purchase-change-btn;
+            margin-top: 32px;
+          }            
+        }
+
+        &__submit {
+          @include purchase-border-line; 
+
+          &__btn {
+            @include purchase-change-btn;
+          }
+        }
+      }
+    }
+  }
+}
+//フッター
+.purchase-footer {
+  background-color: #eee;
+
+  &__links {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+  }
+
+    &__atag {
+      text-decoration: none;
+      color: #333;
+      font-size: 12px;
+      margin-left: 20px; 
+    }
+
+    &__atag:hover {
+      opacity: 0.7;
+    }
+
+  &__logo {
+    width: 180px;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    }
+  
+  &__logo:hover {
+    opacity: 0.7;
+  }
+
+  &__copyright {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+    padding-bottom: 40px;
+  }  
+}
