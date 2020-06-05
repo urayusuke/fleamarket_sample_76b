@@ -1,4 +1,5 @@
-= render partial: "products/header"
+%main
+  = render partial: "products/header"
 
 .headline
   =image_tag "/assets/material/pict/bg-mainVisual-pict_pc.jpg"
@@ -9,9 +10,9 @@
       %br フリマアプリです
     .headline__text-link
       %P.headline__text-link-app
-        %a{:href => "https://apps.apple.com/jp/app/%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA-%E3%83%95%E3%83%AA%E3%83%9E%E3%82%A2%E3%83%97%E3%83%AA-%E3%82%B9%E3%83%9E%E3%83%9B%E6%B1%BA%E6%B8%88%E3%83%A1%E3%83%AB%E3%83%9A%E3%82%A4/id667861049?mt=8", :style => "display:inline-block;background:url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2013-07-22&kind=iossoftware&bubble=ios_apps) no-repeat;width:190px;height:60px;background-size:contain;"}
+        %a{:href => "#", :style => "display:inline-block;background:url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2013-07-22&kind=iossoftware&bubble=ios_apps) no-repeat;width:190px;height:60px;background-size:contain;"}
       %p.headline__text-link-google
-        %a{:href => "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"}
+        %a{:href => "#"}
           %img{:alt => "Google Play で手に入れよう", :src => "https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png"}
 
 .reason
@@ -59,9 +60,9 @@
       %br ほしかったあの商品に出会えるかもしれません。
     .grade__text-link
       %P.grade__text-link-app
-        %a{:href => "https://apps.apple.com/jp/app/%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA-%E3%83%95%E3%83%AA%E3%83%9E%E3%82%A2%E3%83%97%E3%83%AA-%E3%82%B9%E3%83%9E%E3%83%9B%E6%B1%BA%E6%B8%88%E3%83%A1%E3%83%AB%E3%83%9A%E3%82%A4/id667861049?mt=8", :style => "display:inline-block;background:url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2013-07-22&kind=iossoftware&bubble=ios_apps) no-repeat;width:190px;height:60px;background-size:contain;"}
+        %a{:href => "#", :style => "display:inline-block;background:url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2013-07-22&kind=iossoftware&bubble=ios_apps) no-repeat;width:190px;height:60px;background-size:contain;"}
       %P.grade__text-link-google
-        %a{:href => "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"}
+        %a{:href => "#"}
           %img{:alt => "Google Play で手に入れよう", :src => "https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png"}
 
 .feature
@@ -156,12 +157,13 @@
     %p 今すぐ無料ダウンロード！
     .publicity__text-link
       %P.publicity__text-link-app
-        %a{:href => "https://apps.apple.com/jp/app/%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA-%E3%83%95%E3%83%AA%E3%83%9E%E3%82%A2%E3%83%97%E3%83%AA-%E3%82%B9%E3%83%9E%E3%83%9B%E6%B1%BA%E6%B8%88%E3%83%A1%E3%83%AB%E3%83%9A%E3%82%A4/id667861049?mt=8", :style => "display:inline-block;background:url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2013-07-22&kind=iossoftware&bubble=ios_apps) no-repeat;width:190px;height:60px;background-size:contain;"}
+        %a{:href => "#", :style => "display:inline-block;background:url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2013-07-22&kind=iossoftware&bubble=ios_apps) no-repeat;width:190px;height:60px;background-size:contain;"}
       %P.publicity__text-link-google
-        %a{:href => "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"}
+        %a{:href => "#"}
           %img{:alt => "Google Play で手に入れよう", :src => "https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png"}
 
-= render partial: "products/footer"
+%main
+  = render partial: "products/footer"
 
 .icon
   = link_to "#", class: "icon__link" do

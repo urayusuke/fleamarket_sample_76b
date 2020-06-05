@@ -1,0 +1,49 @@
+.header{
+  height: 100px;
+  width: 100%;
+  padding: 15px 200px;
+  position: relative;
+  top: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  &__title{
+    display: flex;
+    justify-content: space-between;
+  &-image{
+    width: 135px;
+    height: 40px;
+    }
+  &-text{
+    width: 100%;
+    margin-left: 30px;
+    height: 36px;
+    }
+  &-search{
+    background-color: $main-color;
+    width: 45px;
+    height: 36px;
+    @include header;
+    align-items: center;
+    }
+  }
+  &__list{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    font-size: 14px;
+    &-left{
+      display: flex;
+      @include header__list-link;
+      li{
+        padding-right: 40px;
+        display: inline-block;
+      }
+    }
+    &-right{
+      display: flex;
+      @include header__list-link;
+      li{
+        padding-left: 20px;
+      }
+    }
+  }
+}
