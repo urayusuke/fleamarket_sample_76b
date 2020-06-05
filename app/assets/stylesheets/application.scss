@@ -2,8 +2,8 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "./config/variable";
+@import "./config/common";
 @import "./mixin/mixin";
-@import "products";
 @import "./modules/user-show";
 @import "./modules/user-logout";
 @import "./modules/user-edit";
