@@ -25,11 +25,11 @@
           %tr
             %th カテゴリー
             %td
-              = link_to "ベビー・キッズ", root_path
+              = link_to "ベビー・キッズ", root_path, class: "product-show__content__info__table__category"
               %br
-              = link_to "ベビー服(男女兼用) ~95cm", root_path
+              = link_to "ベビー服(男女兼用) ~95cm", root_path, class: "product-show__content__info__table__category"
               %br
-              = link_to "アウター", root_path
+              = link_to "アウター", root_path, class: "product-show__content__info__table__category"
           %tr
             %th ブランド
             %td 
@@ -45,7 +45,7 @@
           %tr
             %th 発送元の地域
             %td
-              = link_to "岩手県", root_path
+              = link_to "岩手県", root_path, class: "product-show__content__info__table__prefectures"
           %tr
             %th 発送日の目安
             %td 4-7日で発送
@@ -63,10 +63,10 @@
       %button.product-show__comment__btn コメントする
 
   %ul.product-show__links
-    %li.product-show__links__prev
-      = link_to "前の商品", root_path
-    %li.product-show__links__next
-      = link_to "後ろの商品", root_path
+    %li
+      = link_to "前の商品", root_path, class: "product-show__links__prev"
+    %li
+      = link_to "後ろの商品", root_path, class: "product-show__links__next"
 
-  .product-show__more_items
+  .product-show__more-items
     = link_to "ベビー・キッズをもっと見る", root_path
