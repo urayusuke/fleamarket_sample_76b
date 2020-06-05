@@ -8,3 +8,20 @@
     box-shadow:0 0 0 2px #3CCACE;
   }
 }
+
+@mixin product-show_table-data {
+  font-size: 0.8rem;
+  border: 1px solid #dedede;
+  padding: 8px;
+  vertical-align: middle;
+}
+
+@mixin product-show_font-awesome-5_solid {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+@mixin product-show_links {
+  color: #3CCACE;
+  text-decoration: none;
+}
