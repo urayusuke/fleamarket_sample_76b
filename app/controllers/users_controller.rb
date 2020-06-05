@@ -5,5 +5,14 @@ class UsersController < ApplicationController
 
   def logout
   end
+
+  def info
+  end
+  
+  def address
+  end
+  
+  def credit
+  end
   
 end

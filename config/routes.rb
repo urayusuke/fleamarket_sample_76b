@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get "logout"
+      get "info"
+      get "address"
+      get "credit"
     end
   end
 end
