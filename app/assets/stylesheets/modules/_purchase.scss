@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  
    &__logo {
     height: 50px;
     width: 185px;
@@ -72,7 +72,7 @@
     }
 
     .purchase-option {
-
+    
       padding: 32px 16px 0 16px;
       border-top: 1px solid #f5f5f5;
 
@@ -143,11 +143,11 @@
               @include purchase-right-content;
             }  
           }
-
+          　　　　　　　
           &__text {
             @include purchase-detail-text;
           }
-
+          
           // 配送先登録なし
           &__btn {
             @include purchase-change-btn;
@@ -194,7 +194,7 @@
     margin: 0 auto;
     margin-top: 30px;
     }
-
+  
   &__logo:hover {
     opacity: 0.7;
   }
