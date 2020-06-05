@@ -3,14 +3,9 @@
 @import "font-awesome";
 @import "./config/variable";
 @import "./mixin/mixin";
-<<<<<<< HEAD
-@import "products";
-@import "modules/index";
-@import "modules/header";
-@import "modules/footer";
-=======
 @import "./modules/products";
 @import "./modules/purchase";
 @import "./modules/users";
 @import "modules/index";
->>>>>>> 223ab4c57a951f1f51e0a3f613bc1a1319a2a102
+@import "modules/header";
+@import "modules/footer";
