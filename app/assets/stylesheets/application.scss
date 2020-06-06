@@ -1,6 +1,21 @@
 @import "./modules/reset";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
 @import "./config/variable";
+@import "./config/common";
+
 @import "./mixin/mixin";
-@import "products";
+
+@import "./modules/users";
+@import "./modules/user-show";
+@import "./modules/user-logout";
+@import "./modules/user-edit";
+@import "./modules/user-credit";
+
+@import "modules/header";
+@import "modules/footer";
+
+@import "modules/index";
+@import "./modules/products";
+@import "./modules/purchase";

@@ -1,0 +1,222 @@
+.headline{
+  width: 100%;
+  height: 560px;
+  background-size: cover;
+  position: relative;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0,0,0,0.4);
+  &__text{
+    position: absolute;
+    top: 170px;
+    left: 80px;
+    h2{
+      font-size: 60px;
+      margin-bottom: 0;
+    }
+    &-letter{
+      margin-bottom: 0;
+      line-height: 1.8em;
+    }
+    @include headline__text-link;
+  }
+}
+
+.reason{
+  padding: 60px  20px;
+  @include reason__title;
+  &__text{
+    display: flex;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 1050px;
+    ul{
+      padding: 20px;
+    }
+    span{
+      color: $main-color;
+      font-size: 26px;
+    }
+    h3{
+      font-size: 26px;
+    }
+    &-list{
+      @include header;
+      span{
+        line-height: 65px;
+        padding-left: 10px;
+      }
+    }
+    p{
+      font-size: 18px;
+      text-align: left;
+    }
+  &-list{
+    span{
+      line-height: 90px;
+      font-weight: bold;
+      }
+    }
+  &-letter{
+    font-size: 18px;
+    }
+  }
+  &__text-number{
+    position:absolute;
+    color: #fff;
+    background-color: $main-color;
+    padding: 5px 20px;
+    font-size: 30px;
+  }
+}
+
+.grade{
+  height: 400px;
+  display: block;
+  align-items: center;
+  &__image{
+    position: absolute;
+    background-image: url("/assets/material/pict/bg-topMiddleDl-pict.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 400px;
+    background-position: bottom right ;
+  }
+  &__text{
+    position: absolute;
+    padding: 50px 200px;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0,0,0,0.4);
+    h2{
+      font-size: 27px;
+      font-weight: bold;
+    }
+    p{
+      font-size: 18px;
+      line-height: 0.8;
+    }
+    @include headline__text-link;
+  }
+}
+
+.feature{
+  padding: 60px 100px;
+  @include reason__title;
+  &__text{
+    display: flex;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 1020px;
+    ul{
+      padding: 20px;
+      p{
+        text-align: left;
+      }
+    }
+  }
+}
+
+.category {
+  width: 100%;
+  padding: 80px 0;
+  background-color: #f8f8f8;
+  font-family: Arial, Helvetica, sans-serif;
+  &__title {
+    h2 {
+      margin: 0;
+      font-size: 28px;
+      text-align: center;
+    }
+    h3 {
+      margin: 0;
+      font-size: 24px;
+      text-align: center;
+      color: $main-color;
+    }
+  }
+  &__text {
+    margin: 26px auto;
+    display: flex;
+    justify-content: center;
+    &__space {
+      background-color: white;
+      margin: 0 20px;
+      width: 220px;
+      height: 245px;
+      &__image {
+        width: 220px;
+        height: 150px;
+      }
+      &__name {
+        padding: 16px 16px 0;
+      }
+      &__price {
+        padding: 0 16px;
+      }
+      &__tax {
+        padding: 0 16px 16px;
+        font-size: 10px;
+      }
+      p{
+        margin: 0;
+      }
+    }
+  }
+}
+
+
+.publicity{
+  height: 400px;
+  text-align: center;
+  font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
+  &__image{
+    background-image: url("/assets/material/pict/bg-appBanner-pict.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 400px;
+    position: absolute;
+  }
+  &__text{
+    position: relative;
+    text-shadow: 0 0 5px rgba(0,0,0,0.4);
+    font-weight: bold;
+    color: #fff;
+    line-height: 0.5;
+    padding-top: 100px;
+    h2{
+      font-size: 24px;
+    }
+    p{
+      font-size: 35px;
+    }
+    @include headline__text-link;
+    &-link{
+      margin-top: -50px;
+      justify-content: center;
+    }
+  }
+}
+
+.icon {
+  background-color: $main-color;
+  width: 120px;
+  height: 116px;
+  border-radius: 4%;
+  text-align: center;
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  &__link {
+    text-decoration: none;
+    &__title {
+      padding-top: 15px;
+      font-size: 18px;
+      color: white;
+      margin-bottom: 5px;
+    }
+    &__image {
+      padding-bottom: 15px;
+    }
+  }
+}
+
