@@ -3,5 +3,11 @@
 @import "font-awesome";
 @import "./config/variable";
 @import "./mixin/mixin";
-@import "products";
+
 @import "./modules/show.scss";
+@import "./modules/products";
+@import "./modules/purchase";
+@import "./modules/users";
+@import "modules/index";
+@import "modules/header";
+@import "modules/footer";
