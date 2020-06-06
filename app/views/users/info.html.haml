@@ -20,8 +20,13 @@
         %label パスワード
         %a{class: "user-show__edit__form__field__necessity"} 必須
         %br/
-        %input{type: "text", autocomplete: "new-password", placeholder: "6文字以上の半角英数字", class: "user-show__edit__form__field__text-form"} 
-        %p{class: "user-show__edit__form__field__explanation"} ※ 英字と数字の両方を含めて設定してください
+        %input{type: "text", autocomplete: "new-password", placeholder: "7文字以上の半角英数字", class: "user-show__edit__form__field__text-form"} 
+      .user-show__edit__form__field
+        %label パスワード(確認用)
+        %a{class: "user-show__edit__form__field__necessity"} 必須
+        %br/
+        %input{type: "text", autocomplete: "new-password", placeholder: "もう一度入力してください", class: "user-show__edit__form__field__text-form"} 
+        %br/
         %br/
         %b 本人確認
         %p{class: "user-show__edit__form__field__identity"} 他のお客さまに公開されることはありません。
