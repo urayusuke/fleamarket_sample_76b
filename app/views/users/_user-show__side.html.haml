@@ -1,0 +1,23 @@
+.user-show__side
+  .user-show__side__menu
+    %h2.user-show__side__menu__title マイページメニュー
+    =link_to "お知らせ", user_path, class: "user-show__side__menu__select"
+    =link_to "いいねした商品", user_path, class: "user-show__side__menu__select"
+      
+  .user-show__side__sell
+    %h2.user-show__side__menu__title 商品を出品する
+    =link_to "商品を出品する", user_path, class: "user-show__side__menu__select"
+    =link_to "出品した商品", user_path, class: "user-show__side__menu__select"
+
+  .user-show__side__purchase
+    %h2.user-show__side__menu__title 商品を購入する
+    =link_to "購入した商品", user_path, class: "user-show__side__menu__select"
+    =link_to "最近見た商品", user_path, class: "user-show__side__menu__select"
+    =link_to "コメントした商品", user_path, class: "user-show__side__menu__select"
+    
+  .user-show__side__cog
+    %h2.user-show__side__menu__title 設定・その他
+    =link_to "会員情報", info_user_path, class: "user-show__side__menu__select"
+    =link_to "お届け先情報", address_user_path, class: "user-show__side__menu__select"
+    =link_to "お支払情報", credit_user_path, class: "user-show__side__menu__select"
+    =link_to "ログアウト", logout_user_path, class: "user-show__side__menu__select"

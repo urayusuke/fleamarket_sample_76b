@@ -6,10 +6,20 @@ Rails.application.routes.draw do
       get "purchase"
     end
   end
-  resources :users
+  
+  resources :users do
+    member do
+      get "logout"
+      get "info"
+      get "address"
+      get "credit"
+    end
+  end
+  
   resources :addresses, only: :new do
     collection do
       get "create_page"
     end
   end
+  
 end

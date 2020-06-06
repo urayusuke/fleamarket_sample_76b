@@ -26,6 +26,40 @@
   text-decoration: none;
 }
 
+@mixin user-show-title {
+  font-size: 1.1rem;
+  padding-left: 8px;
+}
+@mixin user-show-select {
+  display: block;
+  font-size: 0.9rem;
+  color: $main-color;
+  text-decoration: none;
+  padding: 16px 8px;
+  background-color: #fff;
+  border-bottom: solid 1px#F8F8F8;
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}
+
+@mixin user-show__edit-form {
+  height: 46px;
+  border: 1px solid #adadad;
+  border-radius: 8px;
+  outline: none;
+  padding: 10px;
+  &:focus {
+    box-shadow:0 0 0 2px $main-color;
+  }
+}
+@mixin user-show__edit-necessity {
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: white;
+}
+
 @mixin header {
   display: flex;
   justify-content: center;
@@ -75,10 +109,12 @@
   }
 }
 @mixin user-sign-necessity {
-  font-size: 12px;
-  padding: 2px 4px;
-  border-radius: 2px;
-  color: white;
+
+@mixin user-show__edit-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  background-color: #dddddd;
 }
 
 @mixin user-sign-circle {
@@ -88,6 +124,23 @@
   background-color: #dddddd;
 }
 
+@mixin user-show__credit-form {
+  height: 46px;
+  border: 1px solid #adadad;
+  border-radius: 8px;
+  outline: none;
+  padding: 10px;
+  &:focus {
+    box-shadow:0 0 0 2px $main-color;
+  }
+}
+@mixin user-show__credit-necessity {
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: white;
+}
+  
 @mixin purchase-side {
   display: flex;
   justify-content: space-between;  
