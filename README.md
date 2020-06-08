@@ -28,14 +28,18 @@
 |name|string|null: false|
 |content|string|null: false|
 |bland_name|string||
-|status|string|null: false|
 |price|integer|null: false|
-|delively_cost|string|null: false|
-|delively_prefecture|string|null: false|
-|delively_days|string|null: false|
+|product_status_id|integer|null: false|
+|delively_cost_id|integer|null: false|
+|prefecture_id|integer|null: false|
+|delively_days_id|integer|null: false|
 
 ### Association
 - belongs_to :user
+- belongs_to_active_hash :product_status
+- belongs_to_active_hash :delively_cost
+- belongs_to_active_hash :prefecture
+- belongs_to_active_hash :delively_days
 - has_many :product_categories
 - has_many :categories, through: :product_categories
 - has_many :images
@@ -77,7 +81,7 @@
 |delively_last_name_kana|string|null: false|
 |delively_first_name_kana|string|null: false|
 |postcode|string|null: false|
-|prefecture|string|null: false|
+|prefecture_id|integer|null: false|
 |city|string|null: false|
 |block|string|null: false|
 |building|string||
@@ -85,6 +89,7 @@
 
 ### Association
 - belongs_to :user
+- belongs_to_active_hash :prefecture
 
 ## ⑦creditsテーブル
 |Column|Type|Options|
