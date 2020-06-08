@@ -1,7 +1,7 @@
 .user-sign
   .user-sign__head
     .user-sign__head__logo
-      = link_to image_tag(asset_path("material/logo/logo.png"), size: "160x100",alt: "サンプル画像"), "#"
+      = link_to image_tag(asset_path("material/logo/logo.png"), size: "160x100",alt: "サンプル画像"), root_path
     .user-sign__head__progress
       .user-sign__head__progress__top
         .user-sign__head__progress__top__user-form--live
@@ -17,54 +17,54 @@
         .user-sign__head__progress__bottom__line
         .user-sign__head__progress__bottom__circle
   .user-sign__form
-    %h2 会員情報入力
-    .user-sign__form__field
-      %label ニックネーム
-      %a{class: "user-sign__form__field__necessity"} 必須
-      %br/
-      %input{type: "text",autofocus: true, placeholder: "例) テック太郎", class: "user-sign__form__field__text-form"} 
-    .user-sign__form__field
-      %label メールアドレス
-      %a{class: "user-sign__form__field__necessity"} 必須
-      %br/
-      %input{type: "text", autocomplete: "email", placeholder: "PC・携帯どちらでも可", class: "user-sign__form__field__text-form"} 
-    .user-sign__form__field
-      %label パスワード
-      %a{class: "user-sign__form__field__necessity"} 必須
-      %br/
-      %input{type: "text", autocomplete: "new-password", placeholder: "7文字以上の半角英数字", class: "user-sign__form__field__text-form"} 
-    .user-sign__form__field
-      %label パスワード(確認用)
-      %a{class: "user-sign__form__field__necessity"} 必須
-      %br/
-      %input{type: "text", autocomplete: "new-password", placeholder: "もう一度入力してください", class: "user-sign__form__field__text-form"} 
-      %br/
-      %br/
-      %b 本人確認
-      %p{class: "user-sign__form__field__identity"} 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
-    .user-sign__form__field--name
-      %label お名前(全角)
-      %a{class: "user-sign__form__field__necessity"} 必須
-      .user-sign__form__field--name__area
-        %input{type: "text", placeholder: "例) 難波", class: "user-sign__form__field__text-form--name"}
-        %input{type: "text", placeholder: "例) 太郎", class: "user-sign__form__field__text-form--name"}
-    .user-sign__form__field--name
-      %label お名前カナ(全角)
-      %a{class: "user-sign__form__field__necessity"} 必須
-      .user-sign__form__field--name__area
-        %input{type: "text", placeholder: "例) ナンバ", class: "user-sign__form__field__text-form--name"} 
-        %input{type: "text", placeholder: "例) タロウ", class: "user-sign__form__field__text-form--name"} 
-    .user-sign__form__field
-      %label 生年月日
-      %a{class: "user-sign__form__field__necessity"} 必須
-      %br/
-      .user-sign__form__field--birthday
-        %input{type: "text", placeholder: "例) 2020", class: "user-sign__form__field__text-form--birthday"}
-        %span 年
-        %input{type: "text", placeholder: "例) 12", class: "user-sign__form__field__text-form--birthday"}
-        %span 月
-        %input{type: "text", placeholder: "例) 12", class: "user-sign__form__field__text-form--birthday"}
-        %span 日
-    .user-sign__form__submit
-      %input{type: "submit", value: "次へ進む", class: "user-sign__form__submit__btn"}
+    = form_for(@user, url: user_registration_path) do |f|
+      = render "devise/shared/error_messages", resource: @user
+      %h2 会員情報入力
+      .user-sign__form__field
+        = f.label :ニックネーム
+        %span.user-sign__form__field__necessity 必須
+        %br/
+        = f.text_field :nickname, autofocus: true, placeholder: "例) テック太郎", class: "user-sign__form__field__text-form"
+      .user-sign__form__field
+        = f.label :メールアドレス
+        %span.user-sign__form__field__necessity 必須
+        %br/
+        = f.email_field :email, autocomplete: "email", placeholder: "PC・携帯どちらでも可", class: "user-sign__form__field__text-form"
+      .user-sign__form__field
+        = f.label :パスワード
+        %span{class: "user-sign__form__field__necessity"} 必須
+        %br/
+        = f.password_field :password, autocomplete: "new-password", placeholder: "7文字以上の半角英数字", class: "user-sign__form__field__text-form"
+      .user-sign__form__field
+        = f.label :"パスワード(確認用)"
+        %span.user-sign__form__field__necessity 必須
+        %br/
+        = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "もう一度入力してください", class: "user-sign__form__field__text-form"
+        %br/
+        %br/
+        %b 本人確認
+        %p.user-sign__form__field__identity 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+      .user-sign__form__field--name
+        = f.label :"お名前(全角)"
+        %span.user-sign__form__field__necessity 必須
+        .user-sign__form__field--name__area
+          = f.text_field :last_name, placeholder: "例) 難波", class: "user-sign__form__field__text-form--name"
+          = f.text_field :first_name, placeholder: "例) 太郎", class: "user-sign__form__field__text-form--name"
+      .user-sign__form__field--name
+        = f.label :"お名前カナ(全角)"
+        %span.user-sign__form__field__necessity 必須
+        .user-sign__form__field--name__area
+          = f.text_field :last_name_kana, placeholder: "例) ナンバ", class: "user-sign__form__field__text-form--name"
+          = f.text_field :first_name_kana, placeholder: "例) タロウ", class: "user-sign__form__field__text-form--name"
+      .user-sign__form__field
+        = f.label :生年月日
+        %span.user-sign__form__field__necessity 必須
+        %br/
+        .user-sign__form__field--birthday
+          = raw sprintf(f.date_select(:birthday, prompt:"--",use_month_numbers: true, start_year:Time.now.year,end_year:(1900),date_separator:'%s'), '年 ', '月 ') + '日' 
+          = icon 'fas', 'chevron-down',class:"user-sign__form__field--birthday__icon1"
+          = icon 'fas', 'chevron-down',class:"user-sign__form__field--birthday__icon2"
+          = icon 'fas', 'chevron-down',class:"user-sign__form__field--birthday__icon3"
+      .user-sign__form__submit
+        = f.submit "次へ進む", class: "user-sign__form__submit__btn"
 = render partial: "./products/footer_sub"

@@ -5,7 +5,7 @@
 
   .user-show__logout
     .user-show__logout__area
-      = link_to destroy_user_session_path do
+      = link_to destroy_user_session_path, method: :delete do
         %button.user-show__logout__area__btn ログアウト
 
 = render partial: "products/footer"
