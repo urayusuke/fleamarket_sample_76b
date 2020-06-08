@@ -1,13 +1,31 @@
-// マージするときに削除
+// パンくずリスト
 // ------------------------------------
-* {
-  box-sizing: border-box;
+.product-breadcrumb {
+  width: 100%;
+  height: 72px;
+  line-height: 72px;
+  border-top: 1px solid #eee;
+  padding: 0 120px;
+  background-color: #fff;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, .16);
+  &__list {
+    display: flex;
+    li {
+      font-size: 1.2rem;
+      margin: 0 6px;
+      a {
+        color: #000;
+        text-decoration: none;
+        &:hover {
+          color: $main-color;
+        }
+      }
+    }
+    &--this {
+      font-weight: bold;
+    }
+  }
 }
-
-body {
-  background-color: #F8F8F8;
-}
-// ------------------------------------
 
 .product-show {
   width: 700px;
@@ -29,6 +47,42 @@ body {
     &__image {
       width: 80%;
       margin: 0 auto;
+      &__main {
+        margin: 0 auto;
+        width: 100%;
+        height: 360px;
+      }
+      // 画像にSOLD表示
+      &__sold {
+        position: relative;
+        &:after {
+          display: block;
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-color: #ea352d transparent transparent transparent;
+          border-width: 150px 150px 0 0;
+        }
+        img {
+          width: 100%;
+        }
+        &__text {
+          position: absolute;
+          top: 20px;
+          left: 0;
+          z-index: 2;
+          color: #fff;
+          transform: rotate(-45deg);
+          font-size: 1.5rem;
+          letter-spacing: 2px;
+          font-weight: bold;
+        }
+      }
       & ul {
         display: flex;
         justify-content: space-around;
@@ -37,12 +91,6 @@ body {
         margin: 0 auto 24px;
         padding: 8px;
       }
-      &__main {
-        display: block;
-        margin: 0 auto;
-        width: 90%;
-        height: 360px;
-      }
       &__sub {
         width: 80%;
         height: 100px;
@@ -50,8 +98,29 @@ body {
     }
     &__price {
       margin-bottom: 24px;
-      & h3{
+      h3{
         font-size: 2.5rem;
+        margin-bottom: 0;
+      }
+      p {
+        margin-top: 0;
+      }
+    }
+    &__purchace {
+      text-decoration: none;
+      button {
+        @include product-show_btn;
+        width: 100%;
+        background-color: $main-color;
+      }
+    }
+    &__soldout {
+      text-decoration: none;
+      button {
+        @include product-show_btn;
+        width: 100%;
+        background-color: #AAAAAA;
+        cursor: not-allowed;
       }
     }
     &__explanation {
@@ -91,35 +160,73 @@ body {
       list-style: none;
       margin-bottom: 48px;
       &__like {
-        padding: 8px 10px;
-        border: 1px solid #ffb340;
-        color: $main-color;
-        border-radius: 40px;
-        &:before {
-          @include product-show_font-awesome-5_solid;
-          content: '\f005';
-          margin-right: 5px;
-        }
-        &:hover {
-          opacity: 0.5;
+        text-decoration: none;
+        li{
+          padding: 8px 10px;
+          border: 1px solid #ffb340;
+          color: $main-color;
+          border-radius: 40px;
+          &:before {
+            @include product-show_font-awesome-5_solid;
+            content: '\f005';
+            margin-right: 5px;
+          }
+          &:hover {
+            opacity: 0.5;
+          }
         }
       }
       &__report {
-        padding: 8px 10px;
-        border: 1px solid #333;
-        border-radius: 4px;
-        &:before {
-          @include product-show_font-awesome-5_solid;
-          content: '\f024';
-          margin-right: 5px;
-        }
-        &:hover {
-          opacity: 0.5;
-          cursor: pointer;
+        color: #000;
+        text-decoration: none;
+        li {
+          padding: 8px 10px;
+          border: 1px solid #333;
+          border-radius: 4px;
+          &:before {
+            @include product-show_font-awesome-5_solid;
+            content: '\f024';
+            margin-right: 5px;
+          }
+          &:hover {
+            opacity: 0.5;
+            cursor: pointer;
+          }
         }
       }
     }
   }
+
+  // 商品の編集と削除
+  // ------------------------------------
+  &__user-info {
+    background-color: #fff;
+    width: 700px;
+    margin-bottom: 16px;
+    padding: 32px 0;
+    text-align: center;
+    p {
+      width: 90%;
+      margin: 0 auto;
+    }
+    &--edit {
+      text-decoration: none;
+      button {
+        @include product-show_btn;
+        width: 90%;
+        background-color: $main-color;
+      }
+    }
+    &--delete {
+      text-decoration: none;
+      button {
+        @include product-show_btn;
+        width: 90%;
+        background-color: #AAAAAA;
+      }
+    }
+  }
+
   // コメント
   // ------------------------------------
   &__comment {
@@ -127,7 +234,14 @@ body {
     background-color: #fff;
     padding: 16px 8px;
     width: 700px;
-    & form {
+    &__messages {
+      width: 90%;
+      margin: 0 auto 16px;
+      li {
+        margin-bottom: 8px;
+      }
+    }
+    form {
       width: 90%;
       margin: 0 auto;
     }
@@ -162,6 +276,18 @@ body {
         font-size: inherit;
         margin-right: 5px;
       }
+    }  
+    &__sold-btn {
+      width: 60%;
+      font-size: 1.2rem;
+      color: #fff;
+      background-color: #AAAAAA;
+      border: none;
+      border-radius: 100px;
+      line-height: 48px;
+      display: block;
+      margin: 0 auto;
+      cursor: not-allowed;
     }
   }
   // リンク先
