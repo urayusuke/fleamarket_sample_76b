@@ -10,5 +10,13 @@ class User < ApplicationRecord
   has_one :address
   has_one :credit
 
-  # validation
+  # validation 
+  validates :nickname, presence: true, length: {maximum: 15}
+  with_options presence: true do
+    validates :last_name
+    validates :first_name
+    validates :last_name_kana
+    validates :first_name_kana
+    validates :birthday 
+  end
 end
