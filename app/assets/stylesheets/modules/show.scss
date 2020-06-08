@@ -47,10 +47,10 @@
     &__image {
       width: 80%;
       margin: 0 auto;
+      display: block;
       &__main {
         margin: 0 auto;
         width: 100%;
-        height: 360px;
       }
       // 画像にSOLD表示
       &__sold {
