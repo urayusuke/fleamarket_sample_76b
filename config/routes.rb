@@ -21,5 +21,12 @@ Rails.application.routes.draw do
       get "create_page"
     end
   end
-  
+
+  resources :credits, only: :new do
+    collection do
+      post 'show', to: 'credits#show'
+      post 'pay', to: 'credits#pay'
+      post 'delete', to: 'credits#delete'
+    end
+  end
 end
