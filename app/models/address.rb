@@ -3,6 +3,9 @@ class Address < ApplicationRecord
   # Association
   belongs_to :user, optional: true
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture
+
   # validation
   validates :postcode, presence: true, length: {minimum: 7, maximum: 7}
   with_options presence: true do
