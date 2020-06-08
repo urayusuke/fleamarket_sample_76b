@@ -128,7 +128,7 @@
   background-color: #dddddd;
 }
 
-@mixin user-show__credit-form {
+@mixin credit-new-form {
   height: 46px;
   border: 1px solid #adadad;
   border-radius: 8px;
@@ -138,7 +138,7 @@
     box-shadow:0 0 0 2px $main-color;
   }
 }
-@mixin user-show__credit-necessity {
+@mixin credit-new-necessity {
   font-size: 12px;
   padding: 2px 4px;
   border-radius: 2px;
