@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+  devise_scope :user do
+    get 'addresses', to: 'users/registrations#new_address'
+    post 'addresses', to: 'users/registrations#create_address'
+  end
   root 'products#index'
   resources :products do
     member do
@@ -15,11 +21,4 @@ Rails.application.routes.draw do
       get "credit"
     end
   end
-  
-  resources :addresses, only: :new do
-    collection do
-      get "create_page"
-    end
-  end
-  
 end

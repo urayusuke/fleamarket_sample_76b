@@ -75,8 +75,44 @@
     }
     &__field {
       margin-bottom: 24px;
-      &__birthday {
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      &--birthday {
         display: flex;
+        position: relative;
+        justify-content: space-between;
+        align-items: center;
+        & select {
+          border: 1px solid #ADADAD;
+          border-radius: 8px;
+          outline: none;
+          padding: 10px;
+          width: 80px;
+          height: 46px;
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          &:focus {
+            box-shadow:0 0 0 2px #3CCACE;
+          }
+        }
+        & i {
+          position: absolute;
+          top: 16px;
+          color: #888888;
+        }
+        &__icon1 {
+          left: 60px;
+          }
+        &__icon2 {
+          left: 176px;
+        }
+        &__icon3 {
+          left: 292px;
+        }
       }
       &--name {
         margin-bottom: 24px;
