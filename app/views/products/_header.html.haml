@@ -1,9 +1,9 @@
 .header
   .header__title
-    =image_tag "/assets/material/logo/logo.png",class:"header__title-image"
+    =image_tag asset_path("material/logo/logo.png"),class:"header__title-image"
     %input{type: "text",class:"header__title-text"}
     .header__title-search
-      %input{type: "image",src:"/assets/material/icon/icon-search 1.png",width: "20",height: "20"}
+      %input{type: "image",src:"#{asset_path "material/icon/icon-search 1.png"}",width: "20",height: "20"}
   .header__list
     %ul.header__list-left
       %li 
