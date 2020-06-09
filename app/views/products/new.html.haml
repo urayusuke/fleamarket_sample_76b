@@ -17,7 +17,7 @@
                 -# .label-box__text-visible クリックしてファイルをアップロード
               .hidden-content
                 = f.fields_for :images do |i|
-                  = i.file_field :name, class: "hidden-field"
+                  = i.file_field :src, class: "hidden-field"
         %hr.underline
         .product-description
           .product-description__form
