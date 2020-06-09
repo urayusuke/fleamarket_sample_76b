@@ -4,7 +4,7 @@ class CreditsController < ApplicationController
 
   def new
     credit = Credit.where(user_id: current_user.id)
-    redirect_to credit_path(current_user.id) if credit.exists?
+    redirect_to credit_user_path(current_user.id) if credit.exists?
   end
 
 
@@ -21,7 +21,7 @@ class CreditsController < ApplicationController
       ) 
       @credit = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @credit.save
-        redirect_to credit_path(current_user.id)
+        redirect_to credit_user_path(current_user.id)
       else
         redirect_to pay_credits_path
       end
@@ -32,7 +32,8 @@ class CreditsController < ApplicationController
     credit = Credit.find_by(user_id: current_user.id)
     if credit.blank?
     else
-      Payjp.api_key = Rails.application.credentials[:PAYJP_PRIVATE_KEY]
+      # Payjp.api_key = Rails.application.credentials[:PAYJP_PRIVATE_KEY]
+      Payjp.api_key = 'sk_test_5ba36e12894768954ddeaa4d'
       customer = Payjp::Customer.retrieve(credit.customer_id)
       customer.delete
       credit.delete

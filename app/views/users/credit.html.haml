@@ -19,6 +19,17 @@
         -#   %p.user-show__credit__menu__list__card--date 01/25
         -#   =link_to "削除する", user_path, class: "user-show__credit__menu__list__card--delete"
 
+        .form-content
+          %br
+          = "**** **** **** " + @default_credit_information.last4
+          %br
+          - exp_month = @default_credit_information.exp_month.to_s
+          - exp_year = @default_credit_information.exp_year.to_s.slice(2,3)
+          = exp_month + " / " + exp_year
+          = form_tag(credit_path(current_user.id), method: :delete, id: 'charge-form',  name: "inputForm") do
+            %input{ type: "hidden", name: "card_id", value: "" }
+            %button.delete-btn 削除する
+
       %p.user-show__credit__menu__link
         = link_to "お支払方法について", user_path
 
