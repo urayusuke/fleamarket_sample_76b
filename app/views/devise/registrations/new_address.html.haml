@@ -41,7 +41,7 @@
         = f.label :都道府県
         %a.user-sign__form__field__necessity 必須
         %br/
-        = f.text_field :prefecture, placeholder: "例) 大阪府", class: "user-sign__form__field__text-form"
+        = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "--"
       .user-sign__form__field
         = f.label :市町村
         %a.user-sign__form__field__necessity 必須
