@@ -206,3 +206,21 @@
     padding-bottom: 40px;
   }  
 }
+
+.purchase-done {
+  width: 700px;
+  margin: 0 auto;
+  h2 {
+    text-align: center;
+  }
+  a {
+    color: $main-color;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin-bottom: 16px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

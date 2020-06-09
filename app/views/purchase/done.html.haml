@@ -1,9 +1,8 @@
 = render partial: "products/header_sub"
 
-%h2 購入が完了しました！
-%p
-  = @product.name
-%p
-  = @product.price
+.purchase-done
+  %h2 購入が完了しました！
+  %h2 ありがとうございます！！
+  = link_to "ユーザーマイページに戻る", user_path(current_user.id)
 
 = render partial: "products/footer_sub"
