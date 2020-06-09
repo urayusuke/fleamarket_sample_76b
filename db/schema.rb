@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_081502) do
     t.string "content", null: false
     t.string "bland_name"
     t.integer "price", null: false
+    t.string "image", null: false
     t.integer "product_status_id", null: false
     t.integer "delively_cost_id", null: false
     t.integer "prefecture_id", null: false
