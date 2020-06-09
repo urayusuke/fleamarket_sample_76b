@@ -13,13 +13,19 @@
             .post__drop__box__container
               .prev-content
               .label-content
-                -# = f.text_field :content, class: "image-file", rows: "6", maxlength: "1000", required: "", placeholder: "" 
+                -# = f.text_field :content, class: "label-box", rows: "6", maxlength: "1000", required: "", placeholder: "" 
                 -# .label-box__text-visible クリックしてファイルをアップロード
               .hidden-content
                 = f.fields_for :images do |i|
                   .js-file_group{"data-index":"= image.index"}
                     = i.file_field :src, class: "js-file"
                     %span.js-remove 削除
+                    - if @product.persisted? 
+                      = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy' 
+                  - if @product.persisted? 
+                    .js-file_group{"data-index":"= @product.images.count"}
+                      = file_field_tag :src, name: "product[images_attributes][#{@product.images.count}][src]", class: 'js-file'
+                      .js-remove 削除
         %hr.underline
         .product-description
           .product-description__form
