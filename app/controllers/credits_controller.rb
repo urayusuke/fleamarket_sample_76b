@@ -9,8 +9,9 @@ class CreditsController < ApplicationController
 
 
   def pay #payjpとCreditのデータベース作成
-    # Payjp.api_key = Rails.application.credentials[:PAYJP_PRIVATE_KEY]
-    Payjp.api_key = 'sk_test_5ba36e12894768954ddeaa4d'
+    Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+    # Payjp.api_key = 'sk_test_5ba36e12894768954ddeaa4d'
+    # Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
     #保管した顧客IDでpayjpから情報取得
     if params['payjp-token'].blank?
       redirect_to new_credit_path
@@ -33,7 +34,8 @@ class CreditsController < ApplicationController
     if credit.blank?
     else
       # Payjp.api_key = Rails.application.credentials[:PAYJP_PRIVATE_KEY]
-      Payjp.api_key = 'sk_test_5ba36e12894768954ddeaa4d'
+      # Payjp.api_key = 'sk_test_5ba36e12894768954ddeaa4d'
+      Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
       customer = Payjp::Customer.retrieve(credit.customer_id)
       customer.delete
       credit.delete
@@ -48,7 +50,8 @@ class CreditsController < ApplicationController
       redirect_to new_credit_path 
     else
       # Payjp.api_key = Rails.application.credentials[:PAYJP_PRIVATE_KEY]
-      Payjp.api_key = 'sk_test_5ba36e12894768954ddeaa4d'
+      # Payjp.api_key = 'sk_test_5ba36e12894768954ddeaa4d'
+      Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
       customer = Payjp::Customer.retrieve(credit.customer_id)
       @default_credit_information = customer.cards.retrieve(credit.card_id)
     end
