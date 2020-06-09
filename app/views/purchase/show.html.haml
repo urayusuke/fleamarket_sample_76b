@@ -28,21 +28,26 @@
             .purchase-option__box__credit__method
               .purchase-option__box__credit__method__left
                 お支払い方法
-              = link_to credit_user_path(current_user) ,class:"purchase-option__box__credit__method__right" do
-                変更する
+              -if @default_credit_information.blank?  
+              -else
+                = link_to credit_user_path(current_user) ,class:"purchase-option__box__credit__method__right" do
+                  変更する
           .purchase-option__box__credit__text
-            %p.purchase-option__box__credit__text__type
-              クレジットカード 
-            %p.purchase-option__box__credit__text__credit-number  
-              = "**** **** **** " + @default_credit_information.last4
-            %p.purchase-option__box__credit__text__use-limit
-              有効期限
-              - exp_month = @default_credit_information.exp_month.to_s
-              - exp_year = @default_credit_information.exp_year.to_s.slice(2,3)
-              = exp_month + "/" + exp_year
+            -if @default_credit_information.blank?
+              = link_to new_credit_path, class:"purchase-option__box__credit__btn" do
+                支払い方法を入力してください
+            - else    
+              %p.purchase-option__box__credit__text__type
+                クレジットカード 
+              %p.purchase-option__box__credit__text__credit-number  
+                = "**** **** **** " + @default_credit_information.last4
+              %p.purchase-option__box__credit__text__use-limit
+                有効期限
+                - exp_month = @default_credit_information.exp_month.to_s
+                - exp_year = @default_credit_information.exp_year.to_s.slice(2,3)
+                = exp_month + "/" + exp_year
 
-            -# = link_to new_credit_path, class:"purchase-option__box__credit__btn" do
-            -#   支払い方法を入力してください
+            
 
           .purchase-option__box__delivery
             .purchase-option__box__delivery__method
@@ -50,7 +55,6 @@
                 配送先
               = link_to address_user_path(current_user) ,class:"purchase-option__box__delivery__method__right" do
                 変更する
-
             .purchase-option__box__delivery__text
               %p.purchase-option__box__delivery__text__post-number
                 = current_user.address.postcode
@@ -58,14 +62,11 @@
                 = current_user.address.prefecture + current_user.address.city + current_user.address.block
               %p.purchase-option__box__delivery__text__name
                 = current_user.address.building
-
-            -# = link_to address_user_path(current_user.id), class:"purchase-option__box__delivery__btn" do
-            -#   配送先を入力してください
-
-          .purchase-option__box__submit
-            = form_tag(pay_purchase_path, method: :post) do
-              %button.purchase-option__box__submit__btn
-                購入する
-              
-        
+          - if @default_credit_information.blank?
+          -else
+            .purchase-option__box__submit
+              = form_tag(pay_purchase_path, method: :post) do
+                %button.purchase-option__box__submit__btn
+                  購入する
+                     
 = render partial: "products/footer_sub"

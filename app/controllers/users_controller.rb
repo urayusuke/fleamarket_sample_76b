@@ -20,7 +20,8 @@ class UsersController < ApplicationController
       # redirect_to credit_user_path(current_user.id) 
     else
       # Payjp.api_key = Rails.application.credentials[:PAYJP_PRIVATE_KEY]
-      Payjp.api_key = 'sk_test_5ba36e12894768954ddeaa4d'
+      Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+      # Payjp.api_key = 'sk_test_5ba36e12894768954ddeaa4d'
       customer = Payjp::Customer.retrieve(credit.customer_id)
       @default_credit_information = customer.cards.retrieve(credit.card_id)
     end

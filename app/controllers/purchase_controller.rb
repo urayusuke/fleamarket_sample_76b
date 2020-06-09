@@ -6,8 +6,6 @@ class PurchaseController < ApplicationController
   def show
     credit = Credit.find_by(user_id: current_user.id)
     if credit.blank?
-      #登録された情報がない場合にカード登録画面に移動
-      redirect_to controller: "credit", action: "new"
     else 
       Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
       customer = Payjp::Customer.retrieve(credit.customer_id)
