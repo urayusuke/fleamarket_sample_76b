@@ -1,5 +1,5 @@
-= render partial: "header_sub"
-​
+= render partial: "products/header_sub"
+
 .purchase-main
   .purchase-container
     %h1.purchase__title
@@ -28,34 +28,25 @@
             .purchase-option__box__credit__method
               .purchase-option__box__credit__method__left
                 お支払い方法
-​
-              -# 【Todo】【if文】支払い方法登録されていたら表示
-              -# = link_to credit_user_path ,class:"purchase-option__box__credit__method__right" do
-              -#   変更する
-​
-            -# 【Todo】支払い方法登録済 > Pay.jpからの情報をもらう      
-            -# .purchase-option__box__credit__text
-            -#   %p.purchase-option__box__credit__text__type
-            -#     クレジットカード 
-            -#   %p.purchase-option__box__credit__text__credit-number  
-            -#     ********0000
-            -#   %p.purchase-option__box__credit__text__use-limit
-            -#     有効期限 01/01
-​
-            -# 支払い方法登録なし
-            = link_to new_credit_path, class:"purchase-option__box__credit__btn" do
-              支払い方法を入力してください
-​
+              = link_to credit_user_path(current_user) ,class:"purchase-option__box__credit__method__right" do
+                変更する
+          .purchase-option__box__credit__text
+            %p.purchase-option__box__credit__text__type
+              クレジットカード 
+            %p.purchase-option__box__credit__text__credit-number  
+              ********0000
+            %p.purchase-option__box__credit__text__use-limit
+              有効期限 01/01
+            -# = link_to new_credit_path, class:"purchase-option__box__credit__btn" do
+            -#   支払い方法を入力してください
+
           .purchase-option__box__delivery
             .purchase-option__box__delivery__method
               .purchase-option__box__delivery__method__left
                 配送先
-​
-              -# 配送先登録済  
-              = link_to address_user_path ,class:"purchase-option__box__delivery__method__right" do
+              = link_to address_user_path(current_user) ,class:"purchase-option__box__delivery__method__right" do
                 変更する
-​
-            -# 配送先登録済      
+
             .purchase-option__box__delivery__text
               %p.purchase-option__box__delivery__text__post-number
                 = current_user.address.postcode
@@ -63,14 +54,16 @@
                 = current_user.address.prefecture + current_user.address.city + current_user.address.block
               %p.purchase-option__box__delivery__text__name
                 = current_user.address.building
-​
-            // 配送先登録なし（配送先を登録しないとユーザー登録ができないため不要かも。。。）
-            -# = link_to address_user_path, class:"purchase-option__box__delivery__btn" do
+
+            -# = link_to address_user_path(current_user.id), class:"purchase-option__box__delivery__btn" do
             -#   配送先を入力してください
-​
-          -# 支払い確認の画面に遷移させる
-          .purchase-option__box__submit
-            = link_to "#", class:"purchase-option__box__submit__btn" do
-              購入する
+
+          -# .purchase-option__box__submit
+          -#   = link_to "#", class:"purchase-option__box__submit__btn" do
+          -#     購入する
+          -# = form_tag(action: :pay, method: :post) do
+          = form_tag(pay_purchase_path, method: :post) do
+            %button 購入する
+              
         
-= render partial: "footer_sub"
+= render partial: "products/footer_sub"

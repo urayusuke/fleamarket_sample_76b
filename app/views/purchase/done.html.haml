@@ -1,3 +1,9 @@
+= render partial: "products/header_sub"
+
 %h2 購入が完了しました！
-%p Apple MacBook Pro 13インチ
-%p ¥135,000(送料込み)
+%p
+  = @product.name
+%p
+  = @product.price
+
+= render partial: "products/footer_sub"
