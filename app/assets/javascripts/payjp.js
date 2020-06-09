@@ -17,7 +17,8 @@ document.addEventListener(
             $("#cvc").removeAttr("name");
             $("#exp_month").removeAttr("name");
             $("#exp_year").removeAttr("name"); //データを自サーバにpostしないように削除
-            $("#card_token").append(
+            // $("#card_token").append(
+            $(".credit-new__form__submit").append(
               $('<input type="hidden" name="payjp-token">').val(response.id)
             ); //取得したトークンを送信できる状態
             document.inputForm.submit();
