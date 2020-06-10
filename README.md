@@ -27,6 +27,7 @@
 |user_id|integer|null: false, foreign_key: true|
 |name|string|null: false|
 |content|string|null: false|
+|category_id|integer|null: false, foreign_key: true|
 |bland_name|string||
 |price|integer|null: false|
 |product_status_id|integer|null: false|
@@ -36,34 +37,28 @@
 
 ### Association
 - belongs_to :user
+- belongs_to :category
 - belongs_to_active_hash :product_status
 - belongs_to_active_hash :delively_cost
 - belongs_to_active_hash :prefecture
 - belongs_to_active_hash :delively_days
-- has_many :product_categories
-- has_many :categories, through: :product_categories
 - has_many :images
 
-## ③product_categoriesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|product_id|integer|null: false, foreign_key: true|
-|category_id|integer|null: false, foreign_key: true|
 
-### Association
-- belongs_to :product
-- belongs_to :category
-
-## ④categoriesテーブル
+## ③categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
+|ancestry|string||
 
 ### Association
-- has_many :product_categories
-- has_many :products, through: :product_categories
+- has_ancestry
+- has_many :products
 
-## ⑤imagesテーブル
+### index
+- add_index :categories, :ancestry
+
+## ④imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |product_id|integer|null: false, foreign_key: true|
@@ -72,7 +67,7 @@
 ### Association
 - belongs_to :product
 
-## ⑥addressesテーブル
+## ⑤addressesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
@@ -91,7 +86,7 @@
 - belongs_to :user
 - belongs_to_active_hash :prefecture
 
-## ⑦creditsテーブル
+## ⑥creditsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
