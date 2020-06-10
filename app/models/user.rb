@@ -5,11 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Association
-  has_many :products
-  
   has_one :address
   has_one :credit
 
+    #出品中
+  has_many :selling_products, -> { where("buyer_id is NULL") },class_name: 'Product', foreign_key: 'seller_id'
+    #売却済
+  has_many :sold_out_products, -> { where("buyer_id is not NULL") },class_name: 'Product', foreign_key: 'seller_id'
+  
+  
   # validation 
   validates :nickname, presence: true, length: {maximum: 15}
   with_options presence: true do
