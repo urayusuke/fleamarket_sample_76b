@@ -69,7 +69,7 @@
                 %span.necessary 必須
             .select-form
               .select-area
-                = f.collection_select :product_status_id, ProductStatus.all ,:id, :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+                = f.collection_select :product_status_id, ProductStatus.all, :id, :name, {include_blank: "選択して下さい", selected: "選択して下さい"}, class: 'product-info', required: ""
         %hr.underline
         .about-delivery
           .about-delivery__form
@@ -82,7 +82,7 @@
                 %span.necessary 必須
             .select-form
               .select-area
-                = f.collection_select :delively_cost_id, DelivelyCost.all, :id, :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+                = f.collection_select :delively_cost_id, DelivelyCost.all, :id, :name, {include_blank: "選択して下さい", selected: "選択して下さい"}, class: 'product-info', required: ""
             .method-form
               .method-form__name
                 %label.product-info 配送の方法
@@ -96,14 +96,14 @@
                 %span.necessary 必須
             .select-form
               .select-area
-                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "選択して下さい", selected: "選択して下さい"}, class: 'product-info', required: ""
             .days-form
               .days-form__name
                 %label.product-info 発送までの日数
                 %span.necessary 必須
             .select-form
               .select-area 
-                = f.collection_select :delively_days_id, DelivelyDays.all, :id, :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+                = f.collection_select :delively_days_id, DelivelyDays.all, :id, :name, {include_blank: "選択して下さい", selected: "選択して下さい"}, class: 'product-info', required: ""
         %hr.underline
         .price
           .price__form
@@ -122,11 +122,9 @@
                     = f.number_field :price, class:"yen", placeholder: "0", type: "number", autocomplete: "off", min: "300", max: "9999999", required: "" 
               .fee-form
                 .name 販売手数料(10%)
-                %span.value ー
               %hr.underline
               .return-form
                 .name 販売利益
-                %span.value ー
         .btn-form
           = f.submit "出品する", class: "product-btn"
           %button.save-btn{type: "button"} 下書きに保存
