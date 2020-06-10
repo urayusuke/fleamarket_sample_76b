@@ -8,10 +8,10 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string :bland_name         
       t.integer :price                     ,null: false
 
-      t.integer :product_status_id
-      t.integer :delively_cost_id
-      t.integer :prefecture_id
-      t.integer :delively_days_id
+      t.integer :product_status_id         ,null: false
+      t.integer :delively_cost_id          ,null: false
+      t.integer :prefecture_id             ,null: false
+      t.integer :delively_days_id          ,null: false
 
       t.timestamps
     end
