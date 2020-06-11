@@ -65,16 +65,7 @@
             %th カテゴリー
             %td
               = link_to product_path, class: "product-show__content__info__table__category" do
-                -# 【Todo】product.category?
-                ベビー・キッズ
-              %br
-              = link_to product_path, class: "product-show__content__info__table__category" do
-                -# 【Todo】product.category?
-                ベビー服(男女兼用) ~95cm
-              %br
-              = link_to product_path, class: "product-show__content__info__table__category" do
-                -# 【Todo】product.category?
-                アウター
+                = @product.category.name
           %tr
             %th ブランド
             %td
