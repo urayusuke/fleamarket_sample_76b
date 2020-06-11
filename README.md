@@ -14,9 +14,12 @@
 |birthday|date|null: false|
 
 ### Association
-- has_many :products
 - has_one :address
 - has_one :credit
+
+- has_many :selling_products, -> { where("buyer_id is NULL") },class_name: 'Product', foreign_key: 'seller_id'
+- has_many :sold_out_products, -> { where("buyer_id is not NULL") },class_name: 'Product', foreign_key: 'seller_id'
+
 
 ### index
 - add_index :users, :email,unique: true
@@ -24,7 +27,8 @@
 ## ②productsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
+|seller_id|integer|null: false, foreign_key: true|
+|buyer_id|integer|foreign_key: true|
 |name|string|null: false|
 |content|string|null: false|
 |category_id|integer|null: false, foreign_key: true|
@@ -36,12 +40,15 @@
 |delively_days_id|integer|null: false|
 
 ### Association
-- belongs_to :user
 - belongs_to :category
 - belongs_to_active_hash :product_status
 - belongs_to_active_hash :delively_cost
 - belongs_to_active_hash :prefecture
 - belongs_to_active_hash :delively_days
+
+- belongs_to :seller, class_name: 'User', foreign_key: 'seller_id'
+- belongs_to :buyer, class_name: 'User', optional: true, foreign_key: 'buyer_id'
+
 - has_many :images
 
 
