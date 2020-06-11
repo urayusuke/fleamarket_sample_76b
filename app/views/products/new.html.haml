@@ -49,6 +49,7 @@
                     .listing-select-wrapper__box
                     .select-area
                       = f.select :category_id, {'レディース': 1, 'メンズ': 2, 'ベビー・キッズ': 3}, { include_blank: '選択してください'}, { class: 'product-info' , required: true } 
+            -# jsで実装したときに使うためコメントアウトしてます
             -# .size-form
             -#   .size-form__name
             -#     %label.product-info サイズ
@@ -87,6 +88,7 @@
               .method-form__name
                 %label.product-info 配送の方法
                 %span.necessary 必須
+            -# active hashでの実装がまだのためコメントアウト
             -# .select-form
             -#   .select-area
             -#     = f.collection_select :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
