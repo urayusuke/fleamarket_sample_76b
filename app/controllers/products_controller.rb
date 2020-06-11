@@ -4,11 +4,13 @@ class ProductsController < ApplicationController
   def index
     @products = Product.includes(:images).order('created_at DESC')
   end
+
   def new
     @product = Product.new
     @product.images.new
     3.times{@product.images.build}
   end
+
   def create
     @product = Product.new(product_params)
     if @product.save
@@ -32,7 +34,6 @@ class ProductsController < ApplicationController
     end
   end
   
-
   def purchase
   end
 
