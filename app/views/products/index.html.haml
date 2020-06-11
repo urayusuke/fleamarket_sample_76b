@@ -96,58 +96,40 @@
       %h2 ピックアップカテゴリー
       %h3 新規投稿商品
     .category__text
-      .category__text__space
-        = image_tag asset_path("material/pict/bg-appBanner-pict.jpg"), class: "category__text__space__image"
-        .category__text__space__name
-          %p product3
-        .category__text__space__price
-          %p 30000円
-        .category__text__space__tax
-          %p (税込)
-      .category__text__space
-        = image_tag asset_path("material/pict/bg-appBanner-pict.jpg"), class: "category__text__space__image"
-        .category__text__space__name
-          %p product2
-        .category__text__space__price
-          %p 20000円
-        .category__text__space__tax
-          %p (税込)
-      .category__text__space
-        = image_tag asset_path("material/pict/bg-appBanner-pict.jpg"), class: "category__text__space__image"
-        .category__text__space__name
-          %p product1
-        .category__text__space__price
-          %p 10000円
-        .category__text__space__tax
-          %p (税込)
+      - @products.first(3).each do |product|
+        = link_to product_path(product.id) do
+          - if product.buyer_id.present? 
+            .category__text__sold 
+              %p SOLD
+          .category__text__space
+            = image_tag product.images.first.src.url,class:"category__text__space__image"
+            .category__text__space__name
+              %p= product.name
+            .category__text__space__price
+              %p
+                = product.price
+                %span 円
+            .category__text__space__tax
+              %p (税込)
     .category__title
       %h2 ピックアップブランド
       %h3 アーカイバ
     .category__text
-      .category__text__space
-        = image_tag asset_path("material/pict/bg-appBanner-pict.jpg"), class: "category__text__space__image"
-        .category__text__space__name
-          %p product3
-        .category__text__space__price
-          %p 30000円
-        .category__text__space__tax
-          %p (税込)
-      .category__text__space
-        = image_tag asset_path("material/pict/bg-appBanner-pict.jpg"), class: "category__text__space__image"
-        .category__text__space__name
-          %p product2
-        .category__text__space__price
-          %p 20000円
-        .category__text__space__tax
-          %p (税込)
-      .category__text__space
-        = image_tag asset_path("material/pict/bg-appBanner-pict.jpg"), class: "category__text__space__image"
-        .category__text__space__name
-          %p product1
-        .category__text__space__price
-          %p 10000円
-        .category__text__space__tax
-          %p (税込)
+      - @products.first(3).each do |product|
+        = link_to product_path(product.id) do
+          - if product.buyer_id.present? 
+            .category__text__sold 
+              %p SOLD
+          .category__text__space
+            = image_tag product.images.first.src.url,class:"category__text__space__image"
+            .category__text__space__name
+              %p= product.name
+            .category__text__space__price
+              %p
+                = product.price
+                %span 円
+            .category__text__space__tax
+              %p (税込)
 
   .publicity
     .publicity__image
