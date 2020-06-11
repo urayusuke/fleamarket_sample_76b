@@ -4,11 +4,13 @@ class ProductsController < ApplicationController
   def index
     @products = Product.includes(:images).order('created_at DESC')
   end
+
   def new
     @product = Product.new
     @product.images.new
     3.times{@product.images.build}
   end
+
   def create
     @product = Product.new(product_params)
     if @product.save
@@ -19,6 +21,10 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
+    @user = User.find_by(id: @product.seller_id)
+    @image = Image.find_by(product_id: @product.id)
+    @images = Image.where(product_id: @product.id)
   end
 
   def edit
