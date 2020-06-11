@@ -8,8 +8,7 @@ class PurchaseController < ApplicationController
       redirect_to root_path, alert: "この商品は購入済です"
     else
       credit = Credit.find_by(user_id: current_user.id)
-      if credit.blank?
-      else 
+      if credit.present?
         Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
         customer = Payjp::Customer.retrieve(credit.customer_id)
         #保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
@@ -30,7 +29,11 @@ class PurchaseController < ApplicationController
   end
 
   def done
-    @product.update(buyer_id: current_user.id)
+    if @product.buyer_id.present?
+      redirect_to root_path, alert: "この商品は購入済です"
+    else
+      @product.update(buyer_id: current_user.id)
+    end
   end
 
   private
