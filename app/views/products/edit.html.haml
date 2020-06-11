@@ -13,13 +13,19 @@
             .post__drop__box__container
               .prev-content
               .label-content
-                -# = f.text_field :content, class: "image-file", rows: "6", maxlength: "1000", required: "", placeholder: "" 
+                -# = f.text_field :content, class: "label-box", rows: "6", maxlength: "1000", required: "", placeholder: "" 
                 -# .label-box__text-visible クリックしてファイルをアップロード
               .hidden-content
                 = f.fields_for :images do |i|
                   .js-file_group{"data-index":"= image.index"}
                     = i.file_field :src, class: "js-file"
                     %span.js-remove 削除
+                    - if @product.persisted? 
+                      = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy' 
+                  - if @product.persisted? 
+                    .js-file_group{"data-index":"= @product.images.count"}
+                      = file_field_tag :src, name: "product[images_attributes][#{@product.images.count}][src]", class: 'js-file'
+                      .js-remove 削除
         %hr.underline
         .product-description
           .product-description__form
@@ -43,18 +49,12 @@
               .category-form__name
                 %label.product-info カテゴリー
                 %span.necessary 必須
-            -# .select-form
-            -#   .listing-product-detail__category
-            -#     .listing-select-wrapper
-            -#       .listing-select-wrapper__box
-            -#       .select-area
-            -#         = f.select :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
             .select-form
               .listing-product-detail__category
                 .listing-select-wrapper
                   .listing-select-wrapper__box
                   .select-area
-                    -# = f.select :category, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+                    = f.select :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
             .size-form
               .size-form__name
                 %label.product-info サイズ
@@ -75,7 +75,7 @@
                 %span.necessary 必須
             .select-form
               .select-area
-                = f.collection_select :product_status_id, ProductStatus.all, :id, :name, {include_blank: "選択して下さい", selected: "選択して下さい"}, class: 'product-info', required: ""
+                = f.collection_select :product_status_id, ProductStatus.all ,:id, :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
         %hr.underline
         .about-delivery
           .about-delivery__form
@@ -88,7 +88,7 @@
                 %span.necessary 必須
             .select-form
               .select-area
-                = f.collection_select :delively_cost_id, DelivelyCost.all, :id, :name, {include_blank: "選択して下さい", selected: "選択して下さい"}, class: 'product-info', required: ""
+                = f.collection_select :delively_cost_id, DelivelyCost.all, :id, :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
             .method-form
               .method-form__name
                 %label.product-info 配送の方法
@@ -102,14 +102,14 @@
                 %span.necessary 必須
             .select-form
               .select-area
-                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "選択して下さい", selected: "選択して下さい"}, class: 'product-info', required: ""
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
             .days-form
               .days-form__name
                 %label.product-info 発送までの日数
                 %span.necessary 必須
             .select-form
               .select-area 
-                = f.collection_select :delively_days_id, DelivelyDays.all, :id, :name, {include_blank: "選択して下さい", selected: "選択して下さい"}, class: 'product-info', required: ""
+                = f.collection_select :delively_days_id, DelivelyDays.all, :id, :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
         %hr.underline
         .price
           .price__form
@@ -128,9 +128,11 @@
                     = f.number_field :price, class:"yen", placeholder: "0", type: "number", autocomplete: "off", min: "300", max: "9999999", required: "" 
               .fee-form
                 .name 販売手数料(10%)
+                %span.value ー
               %hr.underline
               .return-form
                 .name 販売利益
+                %span.value ー
         .btn-form
           = f.submit "出品する", class: "product-btn"
           %button.save-btn{type: "button"} 下書きに保存

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_08_074306) do
+ActiveRecord::Schema.define(version: 2020_06_09_034845) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_074306) do
     t.string "delively_last_name_kana", null: false
     t.string "delively_first_name_kana", null: false
     t.string "postcode", null: false
-    t.string "prefecture", null: false
+    t.integer "prefecture_id", null: false
     t.string "city", null: false
     t.string "block", null: false
     t.string "building"
@@ -31,8 +31,10 @@ ActiveRecord::Schema.define(version: 2020_06_08_074306) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
+    t.string "ancestry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
   create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -46,19 +48,10 @@ ActiveRecord::Schema.define(version: 2020_06_08_074306) do
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "product_id", null: false
-    t.string "name", null: false
+    t.string "src", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_images_on_product_id"
-  end
-
-  create_table "product_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.bigint "category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_product_categories_on_category_id"
-    t.index ["product_id"], name: "index_product_categories_on_product_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -66,13 +59,15 @@ ActiveRecord::Schema.define(version: 2020_06_08_074306) do
     t.string "name", null: false
     t.string "content", null: false
     t.string "bland_name"
-    t.string "status", null: false
     t.integer "price", null: false
-    t.string "delively_cost", null: false
-    t.string "delively_prefecture", null: false
-    t.string "delively_days", null: false
+    t.integer "product_status_id"
+    t.integer "delively_cost_id"
+    t.integer "prefecture_id"
+    t.integer "delively_days_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -97,7 +92,6 @@ ActiveRecord::Schema.define(version: 2020_06_08_074306) do
   add_foreign_key "addresses", "users"
   add_foreign_key "credits", "users"
   add_foreign_key "images", "products"
-  add_foreign_key "product_categories", "categories"
-  add_foreign_key "product_categories", "products"
+  add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
 end

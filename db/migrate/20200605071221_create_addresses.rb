@@ -9,7 +9,7 @@ class CreateAddresses < ActiveRecord::Migration[5.2]
       t.string :delively_first_name_kana   ,null: false
       
       t.string :postcode                   ,null: false
-      t.string :prefecture                 ,null: false
+      t.integer :prefecture_id             ,null: false
       t.string :city                       ,null: false
       t.string :block                      ,null: false
       t.string :building                   

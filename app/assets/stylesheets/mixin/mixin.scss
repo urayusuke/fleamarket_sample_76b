@@ -15,15 +15,20 @@
   padding: 8px;
   vertical-align: middle;
 }
-
 @mixin product-show_font-awesome-5_solid {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
 }
-
 @mixin product-show_links {
   color: #3CCACE;
   text-decoration: none;
+}
+@mixin product-show_btn {
+  display: block;
+  margin: 0 auto;
+  padding: 12px 0;
+  color: #fff;
+  border: none;
 }
 
 @mixin user-show-title {
