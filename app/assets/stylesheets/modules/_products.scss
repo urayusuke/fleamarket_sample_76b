@@ -132,7 +132,7 @@ select.product-info {
     cursor: pointer;
     &__text-visible {
       position: absolute;
-      top: 45%;
+      top: 47%;
       left: 16px;
       right: 16px;
       text-align: center;
@@ -320,6 +320,10 @@ select.product-info {
       display: flex;
       justify-content: center;
       align-items: center;
+      text-decoration: none;
+      &:hover {
+        opacity: 0.7;
+      }
     }
     button.save-btn {
       width: 100%;
@@ -333,6 +337,9 @@ select.product-info {
       padding: 0 24px;
       border-radius: 4px;
       border: 1px solid transparent;
+      &:hover {
+        opacity: 0.7;
+      }
     }
     a.back {
       margin-top: 24px;
