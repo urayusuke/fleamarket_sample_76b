@@ -88,10 +88,9 @@
               .method-form__name
                 %label.product-info 配送の方法
                 %span.necessary 必須
-            -# active hashでの実装がまだのためコメントアウト
-            -# .select-form
-            -#   .select-area
-            -#     = f.collection_select :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+            .select-form
+              .select-area
+                = f.collection_select :delively_method_id, DelivelyMethod.all, :id, :name, {include_blank: "選択して下さい", selected: "選択して下さい"}, class: 'product-info', required: ""
             .area-form
               .area-form__name
                 %label.product-info 発送元の地域

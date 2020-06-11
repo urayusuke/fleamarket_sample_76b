@@ -5,7 +5,11 @@
 @import "./config/variable";
 @import "./config/common";
 
-@import "./mixin/mixin";
+@import "./mixin/common";
+@import "./mixin/credit";
+@import "./mixin/product";
+@import "./mixin/purchase";
+@import "./mixin/user";
 
 @import "./modules/user-sign";
 @import "./modules/user-show";
@@ -22,3 +26,4 @@
 @import "./modules/products";
 @import "./modules/purchase";
 @import "./modules/show.scss";
+@import "./modules/alert.scss";
