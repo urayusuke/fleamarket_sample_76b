@@ -4,50 +4,25 @@
   = render partial: 'user-show__side'
 
   .user-show__credit
-    -# %h2.user-show__credit__title 支払い方法
     .user-show__credit__menu
       .user-show__credit__menu__list
         %h4 クレジットカード一覧
-        -# 【if文】クレジットカードが登録されてないときに表示
-        =link_to user_path do
-          %button.user-show__credit__menu__list__btn クレジットカードを追加する
-
-        -# 【if文】クレジットカードが登録されているときに表示
-        -# .user-show__credit__menu__list__card
-        -#   = image_tag "credit/logo_visa.gif", class: "user-show__credit__menu__list__card--img"
-        -#   %p.user-show__credit__menu__list__card--num ************0000
-        -#   %p.user-show__credit__menu__list__card--date 01/25
-        -#   =link_to "削除する", user_path, class: "user-show__credit__menu__list__card--delete"
-
+        - if @default_credit_information.blank?
+          =link_to new_credit_path do
+            %button.user-show__credit__menu__list__btn クレジットカードを追加する
+        - else     
+          .user-show__credit__menu__list__card
+            = image_tag "credit/logo_visa.gif", class: "user-show__credit__menu__list__card--img"
+            %p.user-show__credit__menu__list__card--num
+              = "**** **** **** " + @default_credit_information.last4
+            %p.user-show__credit__menu__list__card--date
+              - exp_month = @default_credit_information.exp_month.to_s
+              - exp_year = @default_credit_information.exp_year.to_s.slice(2,3)
+              = exp_month + "/" + exp_year
+            = form_tag(credit_path(current_user.id), method: :delete, id: 'charge-form',  name: "inputForm", ) do
+              %input{ type: "hidden", name: "card_id", value: "" }
+              %button.user-show__credit__menu__list__card--delete 削除する 
       %p.user-show__credit__menu__link
-        = link_to "お支払方法について", root_path
-
-    -# 「クレジットカードを追加する」ボタンを押したときに遷移(creditのnewアクション)
-    -# %h2.user-show__credit__title クレジットカード情報入力
-    -# .user-show__credit__form
-    -#   .user-show__credit__form__field
-    -#     %label カード番号
-    -#     %a{class: "user-show__credit__form__field__necessity"} 必須
-    -#     %br/
-    -#     %input{type: "text",autofocus: true, placeholder: "例) 半角数字のみ", class: "user-show__credit__form__field__text-form"} 
-    -#     %div.user-show__credit__form__field__cards
-    -#       = image_tag "credit/logo_visa.gif"
-    -#       = image_tag "credit/logo_mastercard.gif"
-    -#       = image_tag "credit/logo_jcb.gif"
-    -#       = image_tag "credit/logo_amex.gif"
-    -#   .user-show__credit__form__field--limit
-    -#     %label 有効期限
-    -#     %a{class: "user-show__credit__form__field__necessity"} 必須
-    -#     .user-show__credit__form__field--limit__area
-    -#       %input{type: "text", placeholder: "例) 01", class: "user-show__credit__form__field__text-form--num"} 
-    -#       %span.user-show__credit__form__field__text-form__slash /
-    -#       %input{type: "text", placeholder: "例) 25", class: "user-show__credit__form__field__text-form--num"} 
-    -#   .user-show__credit__form__field
-    -#     %label セキュリティコード
-    -#     %a{class: "user-show__credit__form__field__necessity"} 必須
-    -#     %br/
-    -#     %input{type: "text",autofocus: true, placeholder: "例) カードの背面4桁もしくは3桁の番号", class: "user-show__credit__form__field__text-form"} 
-    -#   .user-show__credit__form__submit
-    -#     %input{type: "submit", value: "登録する", class: "user-show__credit__form__submit__btn"}
+        = link_to "お支払方法について", user_path
 
 = render partial: "products/footer"
