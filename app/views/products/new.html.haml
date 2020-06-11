@@ -17,7 +17,7 @@
                 -# .label-box__text-visible クリックしてファイルをアップロード
               .hidden-content
                 = f.fields_for :images do |i|
-                  .js-file_group{"data-index":"= image.index"}
+                  .js-file_group{"data-index":i.index} 
                     = i.file_field :src, class: "js-file"
                     %span.js-remove 削除
         %hr.underline
@@ -43,25 +43,20 @@
               .category-form__name
                 %label.product-info カテゴリー
                 %span.necessary 必須
-            -# .select-form
-            -#   .listing-product-detail__category
-            -#     .listing-select-wrapper
-            -#       .listing-select-wrapper__box
-            -#       .select-area
-            -#         = f.select :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
-            .select-form
-              .listing-product-detail__category
-                .listing-select-wrapper
-                  .listing-select-wrapper__box
-                  .select-area
-                    -# = f.select :category, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
-            .size-form
-              .size-form__name
-                %label.product-info サイズ
-                %span.necessary 必須
-            -# .select-form
-            -#   .select-area
-            -#     = f.collection_select :status_id, Status.all, :id, :name ,class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+              .select-form
+                .listing-product-detail__category
+                  .listing-select-wrapper
+                    .listing-select-wrapper__box
+                    .select-area
+                      = f.select :category_id, {'レディース': 1, 'メンズ': 2, 'ベビー・キッズ': 3}, { include_blank: '選択してください'}, { class: 'product-info' , required: true } 
+            -# jsで実装したときに使うためコメントアウトしてます
+            -# .size-form
+            -#   .size-form__name
+            -#     %label.product-info サイズ
+            -#     %span.necessary 必須
+              -# .select-form
+              -#   .select-area
+              -#     = f.collection_select :status_id, Status.all, :id, :name ,class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
             .brand-form
               .brand-form__name
                 %label.product-info ブランド
@@ -93,9 +88,9 @@
               .method-form__name
                 %label.product-info 配送の方法
                 %span.necessary 必須
-            -# .select-form
-            -#   .select-area
-            -#     = f.collection_select :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+            .select-form
+              .select-area
+                = f.collection_select :delively_method_id, DelivelyMethod.all, :id, :name, {include_blank: "選択して下さい", selected: "選択して下さい"}, class: 'product-info', required: ""
             .area-form
               .area-form__name
                 %label.product-info 発送元の地域
