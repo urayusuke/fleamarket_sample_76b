@@ -3,8 +3,12 @@ class CreditsController < ApplicationController
   require 'payjp'
 
   def new
-    credit = Credit.where(user_id: current_user.id)
-    redirect_to credit_user_path(current_user.id) if credit.exists?
+    if user_signed_in?
+      credit = Credit.where(user_id: current_user.id)
+      redirect_to credit_user_path(current_user.id) if credit.exists?
+    else
+      redirect_to root_path
+    end
   end
 
 
