@@ -1,12 +1,12 @@
 = render partial: "products/header"
 
--# パンくずリスト
 .product-breadcrumb
   %ul.product-breadcrumb__list
     %li
-      = link_to "FURIMA", product_path
+      = link_to "FURIMA", root_path
     %li
       = icon("fa", "angle-right")
+    -# 【Todo】カテゴリー先にリンク
     %li
       = link_to "ベビーキッズ", product_path
     %li
@@ -19,71 +19,77 @@
       = link_to "アウター", product_path
     %li
       = icon("fa", "angle-right")
-    %li.product-breadcrumb__list--this 商品名
+    %li.product-breadcrumb__list--this
+      = @product.name
 
 .product-show
   .product-show__content
-    %h2.product-show__content__title 商品名 
+    %h2.product-show__content__title
+      = @product.name
     .product-show__content__image
-      = image_tag "https://picsum.photos/200/200", class: "product-show__content__image__main"
-      -# 【if 売り切れていたら】売り切れ時に切り替え
-      %div.product-show__content__image__sold
-        = image_tag "https://picsum.photos/200/200"
-        .product-show__content__image__sold__text SOLD
-        
-      %ul
-        %li 
-          = image_tag "https://picsum.photos/200/200", class: "product-show__content__image__sub"
-        %li
-          = image_tag "https://picsum.photos/200/200", class: "product-show__content__image__sub"
-        %li
-          = image_tag "https://picsum.photos/200/200", class: "product-show__content__image__sub"
-    .product-show__content__price
-      %h3 ¥30000
-      %p (税込) 送料込み
+      - if @product.buyer_id == nil
+        = image_tag @image.src.url, class: "product-show__content__image__main", id: "show-main"
+      - else
+        %div.product-show__content__image__sold
+          = image_tag @image.src.url
+          .product-show__content__image__sold__text SOLD
 
-    -# 【<% if current_user.id != @product.id %>】出品者以外のとき表示
-    = link_to product_path, class: "product-show__content__purchace" do
-      %button 購入画面に進む
-    -# 【if 売り切れていたら】売り切れ時に切り替え
-    = link_to product_path, class: "product-show__content__soldout" do
-      %button 売り切れました
+      %ul.product-show__content__image__list
+        - @images.each do |image|
+          %li
+            = image_tag image.src.url
+
+    .product-show__content__price
+      %h3
+        = tax_included_price(@product.price)
+      %p (税込)
+
+    - if user_signed_in? && current_user.id != @product.seller_id
+      - if @product.buyer_id == nil
+        = link_to purchase_path(@product.id), class: "product-show__content__purchace" do
+          %button 購入画面に進む
+      - else
+        = link_to product_path, class: "product-show__content__soldout" do
+          %button 売り切れました
 
     .product-show__content__explanation
-      %p 親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+      %p 
     .product-show__content__info
       %table.product-show__content__info__table
         %tbody
           %tr
             %th 出品者
-            %td hoge
+            %td
+              = @user.nickname
           %tr
             %th カテゴリー
             %td
-              = link_to "ベビー・キッズ", product_path, class: "product-show__content__info__table__category"
-              %br
-              = link_to "ベビー服(男女兼用) ~95cm", product_path, class: "product-show__content__info__table__category"
-              %br
-              = link_to "アウター", product_path, class: "product-show__content__info__table__category"
+              = link_to product_path, class: "product-show__content__info__table__category" do
+                = @product.category.name
           %tr
             %th ブランド
-            %td 
+            %td
+              = @product.bland_name
           %tr
             %th 商品のサイズ
             %td 
           %tr
             %th 商品の状態
-            %td 未使用に近い
+            %td
+              = @product.product_status.name
           %tr
             %th 配送料の負担
-            %td 送料込み（出品者負担）
+            %td 
+              = @product.delively_cost.name
           %tr
             %th 発送元の地域
             %td
-              = link_to "岩手県", product_path, class: "product-show__content__info__table__prefectures"
+              = link_to product_path, class: "product-show__content__info__table__prefectures" do
+                = @product.prefecture.name
           %tr
             %th 発送日の目安
-            %td 4-7日で発送
+            %td
+              = @product.delively_days.name
 
     %ul.product-show__content__option
       = link_to product_path, class: "product-show__content__option__like" do
@@ -91,39 +97,42 @@
       = link_to product_path, class: "product-show__content__option__report" do
         %li 不適切な商品の通報
 
-  -# 【<% if current.user.id == @product.id %>】出品者にのみ表示
-  .product-show__user-info
-    =link_to product_path,class: "product-show__user-info--edit" do
-      %button 商品の編集
-    %p or
-    =link_to product_path, class: "product-show__user-info--delete" do
-      %button 商品の削除
+  - if user_signed_in? && current_user.id == @product.seller_id
+    .product-show__user-info
+      = link_to edit_product_path, class: "product-show__user-info--edit" do
+        %button 商品の編集
+      %p or
+      = link_to product_path, class: "product-show__user-info--delete", method: :delete, data: { confirm: "本当に削除しますか？" } do
+        %button 商品の削除
       
   .product-show__comment
     .product-show__comment__messages
       %ul
-        -# 【<% @comments.each do |comment| %>】li要素を回す
+        %li < コメント一覧 >
+        -# 【Todo】- @comments.each do |comment| li要素をsimple_format(comment.text)で回す
         %li
           %span fuga：
           %span 値下げは可能ですか？？
         %li
           %span hoge：
           %span 値下げは考えておりません！！
-    %form
-      %textarea.product-show__comment__input
-      %p.product-show__comment__caution 
-        相手のことを考え丁寧なコメントを心がけましょう。
-        %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      -# 【if文】ログインしてないと表示させない
-      %button.product-show__comment__btn コメントする
-      -# 【if文】売り切れ時に切り替え
-      %button.product-show__comment__sold-btn 売り切れのためコメントできません
+
+    -if current_user
+      %form
+        %textarea.product-show__comment__input
+        %p.product-show__comment__caution 
+          相手のことを考え丁寧なコメントを心がけましょう。
+          %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        - if @product.buyer_id == nil
+          %button.product-show__comment__btn コメントする
+        - else
+          %button.product-show__comment__sold-btn 売り切れのためコメントできません
 
   %ul.product-show__links
     %li
-      = link_to "前の商品", product_path, class: "product-show__links__prev"
+      = link_to "前の商品", product_path(@product.id - 1), class: "product-show__links__prev"
     %li
-      = link_to "後ろの商品", product_path, class: "product-show__links__next"
+      = link_to "後ろの商品", product_path(@product.id + 1), class: "product-show__links__next"
 
   .product-show__more-items
     = link_to "ベビー・キッズをもっと見る", product_path

@@ -12,8 +12,7 @@
             %p.purchase-product__box__detail__buy-name
               = @product.name
             %span.purchase-product__box__detail__product-fee
-              = (@product.price * 1.1).round
-              円
+              = tax_included_price(@product.price)
             %span.purchase-product__box__detail__shipping-fee （税込）送料込み
     .purchase-option
       .purchase-option__inner
@@ -22,8 +21,7 @@
             .purchase-option__box__payment__left
               支払い金額
             .purchase-option__box__payment__right
-              = (@product.price * 1.1).round
-              円
+              = tax_included_price(@product.price)
           .purchase-option__box__credit
             .purchase-option__box__credit__method
               .purchase-option__box__credit__method__left
@@ -59,7 +57,7 @@
               %p.purchase-option__box__delivery__text__post-number
                 = current_user.address.postcode
               %p.purchase-option__box__delivery__text__address 
-                = current_user.address.prefecture + current_user.address.city + current_user.address.block
+                = current_user.address.prefecture.name + current_user.address.city + current_user.address.block
               %p.purchase-option__box__delivery__text__name
                 = current_user.address.building
           - if @default_credit_information.blank?
@@ -68,5 +66,5 @@
               = form_tag(pay_purchase_path, method: :post) do
                 %button.purchase-option__box__submit__btn
                   購入する
-                     
+                    
 = render partial: "products/footer_sub"
