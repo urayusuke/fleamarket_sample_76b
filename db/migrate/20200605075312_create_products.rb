@@ -13,6 +13,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer :delively_cost_id          ,null: false
       t.integer :prefecture_id             ,null: false
       t.integer :delively_days_id          ,null: false
+      t.integer :delively_method_id        ,null: false
 
       t.timestamps
     end

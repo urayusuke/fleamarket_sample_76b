@@ -13,6 +13,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :delively_cost
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :delively_days
+  belongs_to_active_hash :delively_method
  
   has_many :images
 
