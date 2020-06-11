@@ -22,7 +22,7 @@ class PurchaseController < ApplicationController
     credit = Credit.find_by(user_id: current_user.id)
     Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
     Payjp::Charge.create(
-    amount: @product.price, #支払金額を入力（itemテーブル等に紐づけても良い）
+    amount: (@product.price*1.1).round, #支払金額を入力（itemテーブル等に紐づけても良い）
     customer: credit.customer_id, #顧客ID
     currency: 'jpy', #日本円
     )
