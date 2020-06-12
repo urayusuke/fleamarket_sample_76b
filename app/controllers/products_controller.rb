@@ -38,8 +38,12 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
-    redirect_to root_path, alert: "商品を削除しました"
+    if current_user.id == @product.seller_id
+      @product.destroy
+      redirect_to root_path, alert: "商品を削除しました"
+    else
+      render :show
+    end
   end
   
   private
