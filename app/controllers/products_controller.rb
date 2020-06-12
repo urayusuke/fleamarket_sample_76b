@@ -36,8 +36,15 @@ class ProductsController < ApplicationController
       render :edit
     end
   end
-  
 
+  def destroy
+    if current_user.id == @product.seller_id && @product.destroy
+      redirect_to root_path, alert: "商品を削除しました"
+    else
+      render :show, alert: "商品削除に失敗しました"
+    end
+  end
+  
   private
   def product_params
     params.require(:product).permit(:name, :content, :bland_name, :price, :prefecture_id, :product_status_id, :delively_days_id , :delively_cost_id, :category_id, :delively_method_id, images_attributes: [:src, :_destroy, :id]).merge(seller_id: current_user.id)
