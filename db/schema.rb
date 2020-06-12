@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_06_09_034845) do
     t.integer "prefecture_id", null: false
     t.integer "delively_days_id", null: false
     t.integer "delively_method_id", null: false
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id", null: false
