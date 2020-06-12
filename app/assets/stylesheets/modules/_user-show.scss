@@ -50,6 +50,12 @@
           &__name {
             margin-bottom: 0;
           }
+          &--sold {
+            color: red;
+          }
+          &--sale {
+            color: $main-color;
+          }
         }
         &__next {
           width: 10%;

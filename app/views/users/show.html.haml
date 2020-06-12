@@ -5,22 +5,28 @@
 
   .user-show__products
     %h2 出品した商品
-    = link_to root_path, class: "user-show__products__link" do
-      .user-show__products__link__selling
-        .user-show__products__link__selling__img
-          = image_tag "https://picsum.photos/200/200", size: "60x60"
-        .user-show__products__link__selling__info
-          %p.user-show__products__link__selling__info__name 商品の名前
-          %span.user-show__products__link__selling__info__heart
-          = icon("far", "heart")
-          1
-          %span.user-show__products__link__selling__info__comment
-          = icon("far", "comment")
-          1
-          %span.user-show__products__link__selling__info__status
-          出品中
-        .user-show__products__link__selling__next
-          %span
-          = icon("fa", "angle-right")
+    - @products.zip(@images).each do |product, image|
+      = link_to product_path(product.id), class: "user-show__products__link" do
+        .user-show__products__link__selling
+          .user-show__products__link__selling__img
+            = image_tag image.src.url, size: "60x60"
+          .user-show__products__link__selling__info
+            %p.user-show__products__link__selling__info__name
+              = product.name
+            %span.user-show__products__link__selling__info__heart
+            = icon("far", "heart")
+            0
+            %span.user-show__products__link__selling__info__comment
+            = icon("far", "comment")
+            0
+            - if product.buyer_id.present?
+              %span.user-show__products__link__selling__info--sold
+                売却済
+            - else
+              %span.user-show__products__link__selling__info--sale
+                出品中
+          .user-show__products__link__selling__next
+            %span
+            = icon("fa", "angle-right")
 
 = render partial: "products/footer"
