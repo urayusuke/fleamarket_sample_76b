@@ -6,17 +6,19 @@
       = link_to "FURIMA", root_path
     %li
       = icon("fa", "angle-right")
-    -# 【Todo】カテゴリー先にリンク
     %li
-      = link_to "ベビーキッズ", product_path
-    %li
-      = icon("fa", "angle-right")
-    %li
-      = link_to "ベビー服(男女兼用) ~95cm", product_path
+      = link_to product_path do
+        = @product.category.parent.parent.name
     %li
       = icon("fa", "angle-right")
     %li
-      = link_to "アウター", product_path
+      = link_to product_path do
+        = @product.category.parent.name
+    %li
+      = icon("fa", "angle-right")
+    %li
+      = link_to product_path do
+        = @product.category.name
     %li
       = icon("fa", "angle-right")
     %li.product-breadcrumb__list--this
@@ -66,6 +68,10 @@
             %th カテゴリー
             %td
               = link_to product_path, class: "product-show__content__info__table__category" do
+                = @product.category.parent.parent.name
+                %br
+                = @product.category.parent.name
+                %br
                 = @product.category.name
           %tr
             %th ブランド
