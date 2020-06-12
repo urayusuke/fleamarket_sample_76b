@@ -1,6 +1,7 @@
 .header
   .header__title
-    =image_tag asset_path("material/logo/logo.png"),class:"header__title-image"
+    =link_to root_path do
+      = image_tag asset_path("material/logo/logo.png"),class:"header__title-image"
     %input{type: "text",class:"header__title-text"}
     .header__title-search
       %input{type: "image",src:"#{asset_path "material/icon/icon-search 1.png"}",width: "20",height: "20"}
