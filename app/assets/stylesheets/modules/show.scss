@@ -300,13 +300,17 @@
   // ------------------------------------
   &__links {
     list-style: none;
-    display: flex;
-    justify-content: space-between;
     margin-bottom: 32px;
     color: $main-color;
+    &__clearfix::after {
+      content: "";
+      clear: both;
+      display: block;
+    }
     &__prev {
       @include product-show_links;
       cursor: pointer;
+      float: left;
       &:before {
         @include product-show_font-awesome-5_solid;
         content: '\f104';
@@ -317,6 +321,7 @@
     &__next {
       color: $main-color;
       text-decoration: none;
+      float: right;
       cursor: pointer;
       &:after {
         @include product-show_font-awesome-5_solid;
@@ -324,6 +329,7 @@
         margin-left: 4px;
         font-size: inherit;
       }
+
     }
   }
   &__more-items a {

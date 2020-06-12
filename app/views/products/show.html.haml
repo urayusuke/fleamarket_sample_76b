@@ -135,13 +135,16 @@
         - else
           %button.product-show__comment__sold-btn 売り切れのためコメントできません
 
-  %ul.product-show__links
-    %li
-      = link_to "前の商品", product_path(@product.id - 1), class: "product-show__links__prev"
-    %li
-      = link_to "後ろの商品", product_path(@product.id + 1), class: "product-show__links__next"
+  %ul.product-show__links.product-show__links__clearfix
+    - if @product.previous.present?
+      %li
+        = link_to "前の商品", product_path(@product.previous), class: "product-show__links__prev"
+    - if @product.next.present?
+      %li
+        = link_to "後ろの商品", product_path(@product.next), class: "product-show__links__next"
 
   .product-show__more-items
-    = link_to "ベビー・キッズをもっと見る", product_path
+    = link_to product_path do
+      = "#{@product.category.parent.parent.name}をもっと見る"
 
 = render partial: "products/footer"
