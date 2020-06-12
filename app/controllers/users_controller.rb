@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @products = Product.where(seller_id: current_user.id)
-    @images = Image.find(@products.ids)
   end
 
   def logout
