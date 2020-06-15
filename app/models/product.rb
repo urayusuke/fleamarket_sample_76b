@@ -1,10 +1,10 @@
 class Product < ApplicationRecord
 
 # Association
-  belongs_to :category
+  belongs_to :category , optional: true
 
     #『売り手』情報
-  belongs_to :seller, class_name: 'User', foreign_key: 'seller_id'
+  belongs_to :seller, class_name: 'User', optional: true, foreign_key: 'seller_id'
     #『買い手』情報
   belongs_to :buyer, class_name: 'User', optional: true, foreign_key: 'buyer_id'
   
@@ -22,5 +22,6 @@ class Product < ApplicationRecord
   validates :name, length: { maximum: 40 }, presence: true
   validates :content, length: { maximum: 1000 }, presence: true
   validates :price, numericality: { :greater_than_or_equal_to => 300, :less_than_or_equal_to => 9999999 }, presence: true
-
+  # 単体テストで追加
+  validates :prefecture_id ,presence: true
 end
