@@ -14,13 +14,22 @@ class Product < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :delively_days
   belongs_to_active_hash :delively_method
- 
+
   has_many :images, dependent: :destroy
 
-# validation
+  # validation
   accepts_nested_attributes_for :images, allow_destroy: true
   validates :name, length: { maximum: 40 }, presence: true
   validates :content, length: { maximum: 1000 }, presence: true
   validates :price, numericality: { :greater_than_or_equal_to => 300, :less_than_or_equal_to => 9999999 }, presence: true
+
+  # 前後のレコードを取得するメソッド
+  def previous
+    Product.order('created_at desc, id desc').where('created_at <= ? and id < ?', created_at, id).first
+  end
+
+  def next
+    Product.order('created_at desc, id desc').where('created_at >= ? and id > ?', created_at, id).reverse.first
+  end
 
 end

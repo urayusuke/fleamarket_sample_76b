@@ -6,17 +6,19 @@
       = link_to "FURIMA", root_path
     %li
       = icon("fa", "angle-right")
-    -# 【Todo】カテゴリー先にリンク
     %li
-      = link_to "ベビーキッズ", product_path
-    %li
-      = icon("fa", "angle-right")
-    %li
-      = link_to "ベビー服(男女兼用) ~95cm", product_path
+      = link_to product_path do
+        = @product.category.parent.parent.name
     %li
       = icon("fa", "angle-right")
     %li
-      = link_to "アウター", product_path
+      = link_to product_path do
+        = @product.category.parent.name
+    %li
+      = icon("fa", "angle-right")
+    %li
+      = link_to product_path do
+        = @product.category.name
     %li
       = icon("fa", "angle-right")
     %li.product-breadcrumb__list--this
@@ -53,7 +55,8 @@
           %button 売り切れました
 
     .product-show__content__explanation
-      %p 
+      %p
+        = @product.content
     .product-show__content__info
       %table.product-show__content__info__table
         %tbody
@@ -65,6 +68,10 @@
             %th カテゴリー
             %td
               = link_to product_path, class: "product-show__content__info__table__category" do
+                = @product.category.parent.parent.name
+                %br
+                = @product.category.parent.name
+                %br
                 = @product.category.name
           %tr
             %th ブランド
@@ -128,13 +135,16 @@
         - else
           %button.product-show__comment__sold-btn 売り切れのためコメントできません
 
-  %ul.product-show__links
-    %li
-      = link_to "前の商品", product_path(@product.id - 1), class: "product-show__links__prev"
-    %li
-      = link_to "後ろの商品", product_path(@product.id + 1), class: "product-show__links__next"
+  %ul.product-show__links.product-show__links__clearfix
+    - if @product.previous.present?
+      %li
+        = link_to "前の商品", product_path(@product.previous), class: "product-show__links__prev"
+    - if @product.next.present?
+      %li
+        = link_to "後ろの商品", product_path(@product.next), class: "product-show__links__next"
 
   .product-show__more-items
-    = link_to "ベビー・キッズをもっと見る", product_path
+    = link_to product_path do
+      = "#{@product.category.parent.parent.name}をもっと見る"
 
 = render partial: "products/footer"
