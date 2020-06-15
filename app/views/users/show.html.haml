@@ -5,11 +5,11 @@
 
   .user-show__products
     %h2 出品した商品
-    - @products.zip(@images).each do |product, image|
+    - @products.each do |product|
       = link_to product_path(product.id), class: "user-show__products__link" do
         .user-show__products__link__selling
           .user-show__products__link__selling__img
-            = image_tag image.src.url, size: "60x60"
+            = image_tag product.images.first.src.url
           .user-show__products__link__selling__info
             %p.user-show__products__link__selling__info__name
               = product.name
