@@ -116,24 +116,24 @@
     .product-show__comment__messages
       %ul
         %li < コメント一覧 >
-        -# 【Todo】- @comments.each do |comment| li要素をsimple_format(comment.text)で回す
-        %li
-          %span fuga：
-          %span 値下げは可能ですか？？
-        %li
-          %span hoge：
-          %span 値下げは考えておりません！！
+        - @comments.each do |comment|
+          %li
+            %span
+              = comment.user.nickname
+            ：
+            %span
+              = comment.text
 
     -if current_user
-      %form
-        %textarea.product-show__comment__input
+      = form_with(model: [@product, @comment], local: true) do |f|
+        = f.text_area :text, rows: "3", placeholder: "コメントする", class: "product-show__comment__input"
         %p.product-show__comment__caution 
           相手のことを考え丁寧なコメントを心がけましょう。
           %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
         - if @product.buyer_id == nil
-          %button.product-show__comment__btn コメントする
+          = f.submit "コメントする", class: "product-show__comment__btn"
         - else
-          %button.product-show__comment__sold-btn 売り切れのためコメントできません
+          .product-show__comment__sold-btn 売り切れのためコメントできません
 
   %ul.product-show__links.product-show__links__clearfix
     - if @product.previous.present?

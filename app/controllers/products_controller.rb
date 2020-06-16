@@ -33,6 +33,8 @@ end
     @user = User.find_by(id: @product.seller_id)
     @image = Image.find_by(product_id: @product.id)
     @images = Image.where(product_id: @product.id)
+    @comment = Comment.new
+    @comments = @product.comments.includes(:user)
   end
 
   def edit
