@@ -1,11 +1,15 @@
 class ProductsController < ApplicationController
-  before_action :set_product, except: [:index, :new, :edit, :create,:get_category_children,:get_category_grandchildren]
+  before_action :set_product, except: [:index, :new, :edit, :create, :get_category_children, :get_category_grandchildren]
 
   def index
     @products = Product.includes(:images).order('created_at DESC')
   end
 
   def new
+    unless user_signed_in?
+      flash[:alert] = "ログインしてください"
+      redirect_to root_path
+    end
     @product = Product.new
     @product.images.new
     3.times{@product.images.build}
