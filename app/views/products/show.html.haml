@@ -133,7 +133,7 @@
         - if @product.buyer_id == nil
           = f.submit "コメントする", class: "product-show__comment__btn"
         - else
-          %button.product-show__comment__sold-btn 売り切れのためコメントできません
+          .product-show__comment__sold-btn 売り切れのためコメントできません
 
   %ul.product-show__links.product-show__links__clearfix
     - if @product.previous.present?
