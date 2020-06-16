@@ -7,17 +7,17 @@
     %li
       = icon("fa", "angle-right")
     %li
-      = link_to product_path do
+      = link_to categories_path(anchor: "#{@product.category.parent.parent.name}") do
         = @product.category.parent.parent.name
     %li
       = icon("fa", "angle-right")
     %li
-      = link_to product_path do
+      = link_to categories_path(anchor: "#{@product.category.parent.parent.name}") do
         = @product.category.parent.name
     %li
       = icon("fa", "angle-right")
     %li
-      = link_to product_path do
+      = link_to categories_path(anchor: "#{@product.category.parent.parent.name}") do
         = @product.category.name
     %li
       = icon("fa", "angle-right")
@@ -51,8 +51,7 @@
         = link_to purchase_path(@product.id), class: "product-show__content__purchace" do
           %button 購入画面に進む
       - else
-        = link_to product_path, class: "product-show__content__soldout" do
-          %button 売り切れました
+        .product-show__content__soldout 売り切れました
 
     .product-show__content__explanation
       %p
