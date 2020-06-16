@@ -37,4 +37,6 @@ Rails.application.routes.draw do
       get 'done', to: 'purchase#done'
     end
   end
+
+  resources :categories, only: :index
 end
