@@ -12,7 +12,7 @@
       .user-sign__form__field
         = f.label :パスワード
         %br/
-        = f.text_field :password, autocomplete: "new-password", placeholder: "パスワードを入力してください", class: "user-sign__form__field__text-form"
+        = f.text_field :password, autocomplete: "new-password", placeholder: "パスワードを入力してください", type: "password", class: "user-sign__form__field__text-form"
       .user-sign__form__submit
         = f.submit "ログイン", class: "user-sign__form__submit__btn"
 = render partial: "./products/footer_sub"
