@@ -1,10 +1,10 @@
 class Product < ApplicationRecord
 
 # Association
-  belongs_to :category
+  belongs_to :category , optional: true
 
     #『売り手』情報
-  belongs_to :seller, class_name: 'User', foreign_key: 'seller_id'
+  belongs_to :seller, class_name: 'User', optional: true, foreign_key: 'seller_id'
     #『買い手』情報
   belongs_to :buyer, class_name: 'User', optional: true, foreign_key: 'buyer_id'
   
