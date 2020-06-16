@@ -6,17 +6,19 @@
       = link_to "FURIMA", root_path
     %li
       = icon("fa", "angle-right")
-    -# 【Todo】カテゴリー先にリンク
     %li
-      = link_to "ベビーキッズ", product_path
-    %li
-      = icon("fa", "angle-right")
-    %li
-      = link_to "ベビー服(男女兼用) ~95cm", product_path
+      = link_to categories_path(anchor: "#{@product.category.parent.parent.name}") do
+        = @product.category.parent.parent.name
     %li
       = icon("fa", "angle-right")
     %li
-      = link_to "アウター", product_path
+      = link_to categories_path(anchor: "#{@product.category.parent.parent.name}") do
+        = @product.category.parent.name
+    %li
+      = icon("fa", "angle-right")
+    %li
+      = link_to categories_path(anchor: "#{@product.category.parent.parent.name}") do
+        = @product.category.name
     %li
       = icon("fa", "angle-right")
     %li.product-breadcrumb__list--this
@@ -49,11 +51,11 @@
         = link_to purchase_path(@product.id), class: "product-show__content__purchace" do
           %button 購入画面に進む
       - else
-        = link_to product_path, class: "product-show__content__soldout" do
-          %button 売り切れました
+        .product-show__content__soldout 売り切れました
 
     .product-show__content__explanation
-      %p 
+      %p
+        = @product.content
     .product-show__content__info
       %table.product-show__content__info__table
         %tbody
@@ -65,6 +67,10 @@
             %th カテゴリー
             %td
               = link_to product_path, class: "product-show__content__info__table__category" do
+                = @product.category.parent.parent.name
+                %br
+                = @product.category.parent.name
+                %br
                 = @product.category.name
           %tr
             %th ブランド
@@ -109,32 +115,35 @@
     .product-show__comment__messages
       %ul
         %li < コメント一覧 >
-        -# 【Todo】- @comments.each do |comment| li要素をsimple_format(comment.text)で回す
-        %li
-          %span fuga：
-          %span 値下げは可能ですか？？
-        %li
-          %span hoge：
-          %span 値下げは考えておりません！！
+        - @comments.each do |comment|
+          %li
+            %span
+              = comment.user.nickname
+            ：
+            %span
+              = comment.text
 
     -if current_user
-      %form
-        %textarea.product-show__comment__input
+      = form_with(model: [@product, @comment], local: true) do |f|
+        = f.text_area :text, rows: "3", placeholder: "コメントする", class: "product-show__comment__input"
         %p.product-show__comment__caution 
           相手のことを考え丁寧なコメントを心がけましょう。
           %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
         - if @product.buyer_id == nil
-          %button.product-show__comment__btn コメントする
+          = f.submit "コメントする", class: "product-show__comment__btn"
         - else
-          %button.product-show__comment__sold-btn 売り切れのためコメントできません
+          .product-show__comment__sold-btn 売り切れのためコメントできません
 
-  %ul.product-show__links
-    %li
-      = link_to "前の商品", product_path(@product.id - 1), class: "product-show__links__prev"
-    %li
-      = link_to "後ろの商品", product_path(@product.id + 1), class: "product-show__links__next"
+  %ul.product-show__links.product-show__links__clearfix
+    - if @product.previous.present?
+      %li
+        = link_to "前の商品", product_path(@product.previous), class: "product-show__links__prev"
+    - if @product.next.present?
+      %li
+        = link_to "後ろの商品", product_path(@product.next), class: "product-show__links__next"
 
   .product-show__more-items
-    = link_to "ベビー・キッズをもっと見る", product_path
+    = link_to product_path do
+      = "#{@product.category.parent.parent.name}をもっと見る"
 
 = render partial: "products/footer"

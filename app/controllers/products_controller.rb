@@ -7,6 +7,10 @@ class ProductsController < ApplicationController
   end
 
   def new
+    unless user_signed_in?
+      flash[:alert] = "ログインしてください"
+      redirect_to root_path
+    end
     @product = Product.new
     @product.images.new
     3.times{@product.images.build}
@@ -34,6 +38,8 @@ end
     @user = User.find_by(id: @product.seller_id)
     @image = Image.find_by(product_id: @product.id)
     @images = Image.where(product_id: @product.id)
+    @comment = Comment.new
+    @comments = @product.comments.includes(:user)
   end
 
   def edit

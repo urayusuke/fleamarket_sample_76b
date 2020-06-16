@@ -2,8 +2,8 @@
 // ------------------------------------
 .product-breadcrumb {
   width: 100%;
-  height: 72px;
-  line-height: 72px;
+  height: 56px;
+  line-height: 56px;
   border-top: 1px solid #eee;
   padding: 0 120px;
   background-color: #fff;
@@ -11,7 +11,7 @@
   &__list {
     display: flex;
     li {
-      font-size: 1.2rem;
+      font-size: 0.9rem;
       margin: 0 6px;
       a {
         color: #000;
@@ -122,12 +122,10 @@
     }
     &__soldout {
       text-decoration: none;
-      button {
-        @include product-show_btn;
-        width: 100%;
-        background-color: #AAAAAA;
-        cursor: not-allowed;
-      }
+      @include product-show_btn;
+      width: 100%;
+      background-color: #AAAAAA;
+      cursor: not-allowed;
     }
     &__explanation {
       line-height: 1.7rem;
@@ -286,6 +284,7 @@
     &__sold-btn {
       width: 60%;
       font-size: 1.2rem;
+      text-align: center;
       color: #fff;
       background-color: #AAAAAA;
       border: none;
@@ -300,13 +299,17 @@
   // ------------------------------------
   &__links {
     list-style: none;
-    display: flex;
-    justify-content: space-between;
     margin-bottom: 32px;
     color: $main-color;
+    &__clearfix::after {
+      content: "";
+      clear: both;
+      display: block;
+    }
     &__prev {
       @include product-show_links;
       cursor: pointer;
+      float: left;
       &:before {
         @include product-show_font-awesome-5_solid;
         content: '\f104';
@@ -317,6 +320,7 @@
     &__next {
       color: $main-color;
       text-decoration: none;
+      float: right;
       cursor: pointer;
       &:after {
         @include product-show_font-awesome-5_solid;
@@ -324,6 +328,7 @@
         margin-left: 4px;
         font-size: inherit;
       }
+
     }
   }
   &__more-items a {

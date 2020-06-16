@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_034845) do
+ActiveRecord::Schema.define(version: 2020_06_15_082334) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -37,12 +37,22 @@ ActiveRecord::Schema.define(version: 2020_06_09_034845) do
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
-  create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text"
+    t.bigint "user_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_comments_on_product_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "customer_id", null: false
     t.string "card_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_credits_on_user_id"
   end
 
@@ -66,7 +76,6 @@ ActiveRecord::Schema.define(version: 2020_06_09_034845) do
     t.integer "prefecture_id", null: false
     t.integer "delively_days_id", null: false
     t.integer "delively_method_id", null: false
-
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id", null: false
@@ -94,6 +103,8 @@ ActiveRecord::Schema.define(version: 2020_06_09_034845) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "comments", "products"
+  add_foreign_key "comments", "users"
   add_foreign_key "credits", "users"
   add_foreign_key "images", "products"
   add_foreign_key "products", "categories"
