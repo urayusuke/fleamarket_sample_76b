@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :set_product, except: [:index, :new, :edit, :create, :get_category_children, :get_category_grandchildren]
+  before_action :set_product, except: [:index, :new, :edit, :create,:get_category_children,:get_category_grandchildren]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @products = Product.includes(:images).order('created_at DESC')
@@ -67,5 +68,9 @@ end
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to user_session_path unless user_signed_in?
   end
 end
