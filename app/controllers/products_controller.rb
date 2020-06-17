@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :set_product, except: [:index, :new, :edit, :create,:get_category_children,:get_category_grandchildren]
+  before_action :set_product, except: [:index, :new, :create,:get_category_children,:get_category_grandchildren]
   before_action :move_to_index, except: [:index, :show]
+  before_action :refuse_to_edit, only: :edit
 
   def index
     @products = Product.includes(:images).order('created_at DESC')
@@ -73,4 +74,10 @@ end
   def move_to_index
     redirect_to user_session_path unless user_signed_in?
   end
+
+  def refuse_to_edit
+    if current_user.id != @product.id
+      redirect_to root_path
+    end
+  end 
 end
