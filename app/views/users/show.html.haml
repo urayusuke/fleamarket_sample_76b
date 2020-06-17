@@ -4,7 +4,8 @@
   = render partial: 'user-show__side'
 
   .user-show__products
-    %h2 出品した商品
+    %h2.user-show__products__title
+      出品した商品
     - @products.each do |product|
       = link_to product_path(product.id), class: "user-show__products__link" do
         .user-show__products__link__selling
@@ -18,7 +19,7 @@
             0
             %span.user-show__products__link__selling__info__comment
             = icon("far", "comment")
-            0
+            = product.comments.count
             - if product.buyer_id.present?
               %span.user-show__products__link__selling__info--sold
                 売却済
