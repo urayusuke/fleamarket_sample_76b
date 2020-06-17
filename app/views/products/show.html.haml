@@ -2,24 +2,24 @@
 
 .product-breadcrumb
   %ul.product-breadcrumb__list
-    %li
-      = link_to "FURIMA", root_path
-    %li
+    %li.product-breadcrumb__list__item
+      = link_to "FURIMA", root_path, class: "product-breadcrumb__list__item__link"
+    %li.product-breadcrumb__list__item
       = icon("fa", "angle-right")
-    %li
-      = link_to categories_path(anchor: "#{@product.category.parent.parent.name}") do
+    %li.product-breadcrumb__list__item
+      = link_to categories_path(anchor: "#{@product.category.parent.parent.name}"), class: "product-breadcrumb__list__item__link" do
         = @product.category.parent.parent.name
-    %li
+    %li.product-breadcrumb__list__item
       = icon("fa", "angle-right")
-    %li
-      = link_to categories_path(anchor: "#{@product.category.parent.parent.name}") do
+    %li.product-breadcrumb__list__item
+      = link_to categories_path(anchor: "#{@product.category.parent.parent.name}"), class: "product-breadcrumb__list__item__link" do
         = @product.category.parent.name
-    %li
+    %li.product-breadcrumb__list__item
       = icon("fa", "angle-right")
-    %li
-      = link_to categories_path(anchor: "#{@product.category.parent.parent.name}") do
+    %li.product-breadcrumb__list__item
+      = link_to categories_path(anchor: "#{@product.category.parent.parent.name}"), class: "product-breadcrumb__list__item__link" do
         = @product.category.name
-    %li
+    %li.product-breadcrumb__list__item
       = icon("fa", "angle-right")
     %li.product-breadcrumb__list--this
       = @product.name
@@ -30,93 +30,105 @@
       = @product.name
     .product-show__content__image
       - if @product.buyer_id == nil
-        = image_tag @image.src.url, class: "product-show__content__image__main", id: "show-main"
+        = image_tag @image.src.url, class: "product-show__content__image__main"
       - else
         %div.product-show__content__image__sold
-          = image_tag @image.src.url
+          = image_tag @image.src.url, class: "product-show__content__image__sold__product"
           .product-show__content__image__sold__text SOLD
 
       %ul.product-show__content__image__list
         - @images.each do |image|
           %li
-            = image_tag image.src.url
+            = image_tag image.src.url, class: "product-show__content__image__list__content"
 
     .product-show__content__price
-      %h3
+      %h3.product-show__content__price__title
         = tax_included_price(@product.price)
-      %p (税込)
+      %p.product-show__content__price__tax (税込)
 
     - if user_signed_in? && current_user.id != @product.seller_id
       - if @product.buyer_id == nil
         = link_to purchase_path(@product.id), class: "product-show__content__purchace" do
           %button 購入画面に進む
       - else
-        .product-show__content__soldout 売り切れました
+        .product-show__content__soldout
+          売り切れました
 
     .product-show__content__explanation
       %p
         = @product.content
+
     .product-show__content__info
       %table.product-show__content__info__table
         %tbody
           %tr
-            %th 出品者
-            %td
+            %th.product-show__content__info__table--head
+              出品者
+            %td.product-show__content__info__table--data
               = @user.nickname
           %tr
-            %th カテゴリー
-            %td
-              = link_to product_path, class: "product-show__content__info__table__category" do
+            %th.product-show__content__info__table--head
+              カテゴリー
+            %td.product-show__content__info__table--data
+              = link_to categories_path(anchor: "#{@product.category.parent.parent.name}"), class: "product-show__content__info__table__category" do
                 = @product.category.parent.parent.name
                 %br
                 = @product.category.parent.name
                 %br
                 = @product.category.name
           %tr
-            %th ブランド
-            %td
+            %th.product-show__content__info__table--head
+              ブランド
+            %td.product-show__content__info__table--data
               = @product.bland_name
           %tr
-            %th 商品のサイズ
-            %td 
+            %th.product-show__content__info__table--head
+              商品のサイズ
+            %td.product-show__content__info__table--data
           %tr
-            %th 商品の状態
-            %td
+            %th.product-show__content__info__table--head
+              商品の状態
+            %td.product-show__content__info__table--data
               = @product.product_status.name
           %tr
-            %th 配送料の負担
-            %td 
+            %th.product-show__content__info__table--head
+              配送料の負担
+            %td.product-show__content__info__table--data
               = @product.delively_cost.name
           %tr
-            %th 発送元の地域
-            %td
-              = link_to product_path, class: "product-show__content__info__table__prefectures" do
-                = @product.prefecture.name
+            %th.product-show__content__info__table--head
+              発送元の地域
+            %td.product-show__content__info__table--data
+              = @product.prefecture.name
           %tr
-            %th 発送日の目安
-            %td
+            %th.product-show__content__info__table--head
+              発送日の目安
+            %td.product-show__content__info__table--data
               = @product.delively_days.name
 
     %ul.product-show__content__option
       = link_to product_path, class: "product-show__content__option__like" do
-        %li お気に入り 0
+        %li.product-show__content__option__like__count
+          お気に入り 0
       = link_to product_path, class: "product-show__content__option__report" do
-        %li 不適切な商品の通報
+        %li.product-show__content__option__report__link
+          不適切な商品の通報
 
   - if user_signed_in? && current_user.id == @product.seller_id
     .product-show__user-info
       = link_to edit_product_path, class: "product-show__user-info--edit" do
         %button 商品の編集
-      %p or
+      %p.product-show__user-info--or or
       = link_to product_path, class: "product-show__user-info--delete", method: :delete, data: { confirm: "本当に削除しますか？" } do
         %button 商品の削除
       
   .product-show__comment
     .product-show__comment__messages
       %ul
-        %li < コメント一覧 >
+        %li.product-show__comment__messages__text
+          < コメント一覧 >
         - @comments.each do |comment|
-          %li
+          %li.product-show__comment__messages__text
             %span
               = comment.user.nickname
             ：
@@ -124,15 +136,17 @@
               = comment.text
 
     -if current_user
-      = form_with(model: [@product, @comment], local: true) do |f|
-        = f.text_area :text, rows: "3", placeholder: "コメントする", class: "product-show__comment__input"
-        %p.product-show__comment__caution 
+      = form_with(model: [@product, @comment], local: true, class: "product-show__comment__form") do |f|
+        = f.text_area :text, rows: "3", placeholder: "コメントする", class: "product-show__comment__form__input"
+        %p.product-show__comment__form__caution 
           相手のことを考え丁寧なコメントを心がけましょう。
-          %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          %br
+            不快な言葉遣いなどは利用制限や退会処分となることがあります。
         - if @product.buyer_id == nil
-          = f.submit "コメントする", class: "product-show__comment__btn"
+          = f.submit "コメントする", class: "product-show__comment__form__btn"
         - else
-          .product-show__comment__sold-btn 売り切れのためコメントできません
+          .product-show__comment__form__sold-btn
+            売り切れのためコメントできません
 
   %ul.product-show__links.product-show__links__clearfix
     - if @product.previous.present?
@@ -142,8 +156,8 @@
       %li
         = link_to "後ろの商品", product_path(@product.next), class: "product-show__links__next"
 
-  .product-show__more-items
-    = link_to product_path do
+  %div
+    = link_to categories_path(anchor: "#{@product.category.parent.parent.name}"), class: "product-show__more-items" do
       = "#{@product.category.parent.parent.name}をもっと見る"
 
 = render partial: "products/footer"

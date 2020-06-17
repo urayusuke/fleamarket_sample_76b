@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'credits/new'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -7,15 +6,9 @@ Rails.application.routes.draw do
     get 'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
   end
-  root 'products#index'
-  resources :products do
-    resources :comments, only: :create
-    collection do
-      get 'get_category_children',defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
-    end
-  end
   
+  root 'products#index'
+
   resources :users do
     member do
       get "logout"
@@ -25,13 +18,21 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :products do
+    resources :comments, only: :create
+    collection do
+      get 'get_category_children',defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+  end
+  
   resources :credits, only: [:new, :show, :destroy] do
     collection do
       post 'pay', to: 'credits#pay'
     end
   end
 
-  resources :purchase, only: [:show] do
+  resources :purchase, only: :show do
     member do
       post 'pay', to: 'purchase#pay'
       get 'done', to: 'purchase#done'
@@ -40,4 +41,5 @@ Rails.application.routes.draw do
 
   resources :searches, only: :index
   resources :categories, only: :index
+
 end
