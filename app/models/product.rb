@@ -16,13 +16,14 @@ class Product < ApplicationRecord
   belongs_to_active_hash :delively_method
 
   has_many :images, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   # validation
   accepts_nested_attributes_for :images, allow_destroy: true
   validates :name, length: { maximum: 40 }, presence: true
   validates :content, length: { maximum: 1000 }, presence: true
   validates :price, numericality: { :greater_than_or_equal_to => 300, :less_than_or_equal_to => 9999999 }, presence: true
-  validates :prefecture_id ,presence: true
+  validates :category_id, :product_status_id, :delively_cost_id, :delively_method_id, :prefecture_id, :delively_days_id, presence: true
 
   # 前後のレコードを取得するメソッド
   def previous

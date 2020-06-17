@@ -13,6 +13,7 @@ class User < ApplicationRecord
     #売却済
   has_many :sold_out_products, -> { where("buyer_id is not NULL") },class_name: 'Product', foreign_key: 'seller_id'
   
+  has_many :comments
   
   # validation 
   validates :nickname, presence: true, length: {maximum: 15}

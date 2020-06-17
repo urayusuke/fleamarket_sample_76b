@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        email: メールアドレス
+        password: パスワード
+        last_name: お名前(苗字)
+        first_name: お名前(名前)
+        last_name_kana: お名前カナ(苗字)
+        first_name_kana: お名前カナ(名前)
+        birthday: 誕生日
+        address: 送り先
+      address:
+        postcode: 郵便番号
+        delively_last_name: 送り先お名前(苗字)
+        delively_first_name: 送り先お名前(名前)
+        delively_last_name_kana: 送り先お名前カナ(苗字)
+        delively_first_name_kana: 送り先お名前カナ(名前)
+        prefecture: 都道府県
+        city: 市町村
+        block: 番地
+      product:
+        name: 名前
+        
+        

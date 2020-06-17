@@ -1,11 +1,16 @@
 class ProductsController < ApplicationController
   before_action :set_product, except: [:index, :new, :edit, :create,:get_category_children,:get_category_grandchildren]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @products = Product.includes(:images).order('created_at DESC')
   end
 
   def new
+    unless user_signed_in?
+      flash[:alert] = "ログインしてください"
+      redirect_to root_path
+    end
     @product = Product.new
     @product.images.new
     3.times{@product.images.build}
@@ -33,6 +38,8 @@ end
     @user = User.find_by(id: @product.seller_id)
     @image = Image.find_by(product_id: @product.id)
     @images = Image.where(product_id: @product.id)
+    @comment = Comment.new
+    @comments = @product.comments.includes(:user)
   end
 
   def edit
@@ -61,5 +68,9 @@ end
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to user_session_path unless user_signed_in?
   end
 end
