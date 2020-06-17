@@ -20,14 +20,18 @@ class PurchaseController < ApplicationController
   end
 
   def pay
-    credit = Credit.find_by(user_id: current_user.id)
-    Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
-    Payjp::Charge.create(
-    amount: (@product.price*1.1).round, #支払金額を入力（itemテーブル等に紐づけても良い）
-    customer: credit.customer_id, #顧客ID
-    currency: 'jpy', #日本円
-    )
-    redirect_to action: 'done' #完了画面に移動
+    if current_user.id != @product.seller.id
+      credit = Credit.find_by(user_id: current_user.id)
+      Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+      Payjp::Charge.create(
+      amount: (@product.price*1.1).round, #支払金額を入力
+      customer: credit.customer_id, #顧客ID
+      currency: 'jpy', #日本円
+      )
+      redirect_to action: 'done' #完了画面に移動
+    else
+      redirect_to root_path, alert: "自身が出品した商品を購入することはできません"
+    end
   end
 
   def done
