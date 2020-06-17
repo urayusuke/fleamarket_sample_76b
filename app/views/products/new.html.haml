@@ -12,14 +12,116 @@
               最大4枚までアップロードできます
             .post__drop__box__container
               .prev-content
-              .label-content
+              .label-content#image-box
                 -# = f.text_field :content, class: "image-file", rows: "6", maxlength: "1000", required: "", placeholder: "" 
                 -# .label-box__text-visible クリックしてファイルをアップロード
               .hidden-content
+                = icon("fas", "camera")
+                %p クリックしてファイルをアップロード
+                .hidden-content-image
+                  %img{id:"image-file",height:"150",width:"150"}
+                    %a#hidden-content-delete 削 除
+                  %img{id:"image-file1",height:"150",width:"150"}
+                    %a#hidden-content-delete1 削 除
+                  %img{id:"image-file2",height:"150",width:"150"}
+                    %a#hidden-content-delete2 削 除
+                  %img{id:"image-file3",height:"150",width:"150"}
+                    %a#hidden-content-delete3 削 除
+                    :javascript
+                      $(function(){
+                          product_images_attributes_0_src.addEventListener('change', function(e){
+                            var file = e.target.files[0];
+                            var fileReader = new FileReader();
+                            fileReader.onload = function() {
+                              var dataUri = this.result;
+                              var img = document.getElementById('image-file');
+                              img.src = dataUri;
+                              img.style.opacity = 1;
+                          }
+                            fileReader.readAsDataURL(file);
+                              $('#product_images_attributes_0_src').hide();
+                              var block = document.getElementById('product_images_attributes_1_src');
+                              block.style.display = "block";
+                              var d = document.getElementById('hidden-content-delete');
+                              d.style.display = "block";
+                              $(function(){
+                                $('#hidden-content-delete').on('click', function(){
+                                  $('#image-file').remove();
+                                  $('#hidden-content-delete').remove();
+                                  $('#product_images_attributes_0_src').remove();
+                                });
+                              });
+                            });
+                          product_images_attributes_1_src.addEventListener('change', function(e){
+                            var file = e.target.files[0];
+                            var fileReader = new FileReader();
+                            fileReader.onload = function() {
+                              var dataUri = this.result;
+                              var img = document.getElementById('image-file1');
+                              img.src = dataUri;
+                              img.style.opacity = 1;
+                            }
+                            fileReader.readAsDataURL(file);
+                              $('#product_images_attributes_1_src').hide();
+                              var img = document.getElementById('product_images_attributes_2_src');
+                              img.style.display = "block";
+                              var d = document.getElementById('hidden-content-delete1');
+                              d.style.display = "block";
+                              $(function(){
+                                $('#hidden-content-delete1').on('click', function(){
+                                  $('#image-file1').remove();
+                                  $('#hidden-content-delete1').remove();
+                                  $('#product_images_attributes_1_src').remove();
+                                });
+                              });
+                            });
+                          product_images_attributes_2_src.addEventListener('change', function(e){
+                            var file = e.target.files[0];
+                            var fileReader = new FileReader();
+                            fileReader.onload = function() {
+                              var dataUri = this.result;
+                              var img = document.getElementById('image-file2');
+                              img.src = dataUri;
+                              img.style.opacity = 1;
+                            }
+                            fileReader.readAsDataURL(file);
+                              $('#product_images_attributes_2_src').hide();
+                              var img = document.getElementById('product_images_attributes_3_src');
+                              img.style.display = "block";
+                              var d = document.getElementById('hidden-content-delete2');
+                              d.style.display = "block";
+                              $(function(){
+                                $('#hidden-content-delete2').on('click', function(){
+                                  $('#image-file2').remove();
+                                  $('#hidden-content-delete2').remove();
+                                  $('#product_images_attributes_2_src').remove();
+                                });
+                              });
+                          });
+                          product_images_attributes_3_src.addEventListener('change', function(e){
+                            var file = e.target.files[0];
+                            var fileReader = new FileReader();
+                            fileReader.onload = function() {
+                              var dataUri = this.result;
+                              var img = document.getElementById('image-file3');
+                              img.src = dataUri;
+                              img.style.opacity = 1;
+                            }
+                            fileReader.readAsDataURL(file);
+                            $('#product_images_attributes_3_src').hide();
+                            var d = document.getElementById('hidden-content-delete3');
+                              d.style.display = "block";
+                              $(function(){
+                                $('#hidden-content-delete3').on('click', function(){
+                                  $('#image-file3').remove();
+                                  $('#hidden-content-delete3').remove();
+                                  $('#product_images_attributes_3_src').remove();
+                                });
+                              });
+                            });
+                          });
                 = f.fields_for :images do |i|
-                  .js-file_group{"data-index":i.index} 
-                    = i.file_field :src, class: "js-file"
-                    %span.js-remove 削除
+                  = i.file_field :src, class: "js-file"
         %hr.underline
         .product-description
           .product-description__form
