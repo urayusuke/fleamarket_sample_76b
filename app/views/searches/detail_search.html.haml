@@ -98,17 +98,17 @@
           .search__check-boxes
             .search__check-box
               %label
-                %input{type:"checkbox", class:"search__check-box__label" }
+                = f.check_box :buyer_id_not_null, class: "search__check-box__label" 
                 .search_check-box__text      
                   = 'すべて'
             .search__check-box
               %label
-                = f.check_box :buyer_id_null, { multiple: true ,class: "search__check-box__label" }
+                = f.check_box :buyer_id_null, class: "search__check-box__label" 
                 .search_check-box__text
                   = '販売中'
             .search__check-box
               %label
-                = f.check_box :buyer_id_not_null, { multiple: true ,class: "search__check-box__label"}
+                = f.check_box :buyer_id_not_null, class: "search__check-box__label" 
                 .search_check-box__text
                   = '売り切れ'        
         .search__btn__area
@@ -116,10 +116,10 @@
           = f.submit "完了" ,class:"search__btn__area__finish"
 
   .search__content
-    - if @products.present? && @search.present?
+    - if @products.present? 
       .search__result-head
         = @search
-        %span.search__result-head-text 検索結果
+        %span.search__result-head-text の検索結果
       .search__result-number
         = "1-#{@products.count}件表示"
       .search__groups
@@ -135,7 +135,7 @@
     - else
       .search__result-head
         = @search
-        %span.search__result-head-text 検索結果 
+        %span.search__result-head-text の検索結果 
       .search__miss
         該当する商品が見つかりません。検索条件を変えて、再度お試しください。   
 

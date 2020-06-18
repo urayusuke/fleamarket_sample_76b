@@ -39,7 +39,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :searches, only: :index
+  resources :searches, only: :index do
+    collection do
+      get 'detail_search', to: 'searches#detail_search'
+    end
+  end
+
   resources :categories, only: :index
 
 end
