@@ -1,0 +1,69 @@
+#image-edit0,
+#image-edit1,
+#image-edit2,
+#image-edit3{
+  height: 150px;
+  position: relative;
+}
+
+#hidden-content-edit0,
+#hidden-content-edit1,
+#hidden-content-edit2,
+#hidden-content-edit3{
+  position: absolute;
+  color: blue;
+  font-weight: bold;
+  background-color: white;
+  cursor: pointer;
+}
+
+#hidden-content-edit0{
+  left: 0;
+  top: 120px;
+  padding: 3px 57px;
+}
+
+#hidden-content-edit1{
+  left: 150px;
+  top: 120px;
+  padding: 3px 62px;
+}
+
+#hidden-content-edit2{
+  right: 160px;
+  top: 120px;
+  padding: 3px 56px;
+}
+
+#hidden-content-edit3{
+  right: 0;
+  top: 120px;
+  padding: 3px 61px;
+}
+
+
+#edit,
+#edit0,
+#edit1,
+#edit2,
+#edit3{
+  width: 150px;
+  height: 120px;
+  position: absolute;
+  top: 0;
+  display: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+#edit1{
+  margin-left: 155px;
+}
+
+#edit2{
+  margin-left: 311px;
+}
+
+#edit3{
+  margin-left: 466px;
+}
