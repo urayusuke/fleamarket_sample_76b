@@ -1,7 +1,8 @@
 class SearchesController < ApplicationController
 
   def index
-    @product = Product.new
+    @products = Product.search(params[:search]).limit(132)
+    @search = params[:search]
   end
 
 end

@@ -106,19 +106,28 @@
           完了
 
   .search__content
-    .search__result-head
-      カバン
-      %span.search__result-head-text の検索結果
-    .search__result-number
-      1-100件表示
-    .search__groups
-      .search__group
-        = link_to "#" ,class:"search__group-link" do
-          = image_tag asset_path("material/icon/icon-01.png"), class:"search__group__image"
-          .search__group__text
-            .search__group__text__detail
-              いいね
-          .search__group__price
-            ¥3000    
+    - if @products.present?
+      .search__result-head
+        = @search
+        %span.search__result-head-text の検索結果
+      .search__result-number
+        = "1-#{@products.count}件表示"
+      .search__groups
+        - @products.each do |product|
+          .search__group
+            = link_to product_path(product.id) ,class:"search__group-link" do
+              = image_tag product.images.first.src.url, class:"search__group__image"
+              .search__group__text
+                .search__group__text__detail
+                  = product.name
+              .search__group__price
+                = "¥#{product.price}"
+    - else
+      .search__result-head
+        = @search
+        %span.search__result-head-text の検索結果 
+      .search__miss
+        該当する商品が見つかりません。検索条件を変えて、再度お試しください。   
+
       
 = render partial: "products/footer"
