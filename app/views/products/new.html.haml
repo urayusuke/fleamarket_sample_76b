@@ -19,16 +19,16 @@
                 = icon("fas", "camera")
                 %p クリックしてファイルをアップロード
                 .hidden-content-image
-                  %img{id:"image-file",height:"150",width:"150"}
-                    %a#hidden-content-delete 削 除
-                  %img{id:"image-file1",height:"150",width:"150"}
-                    %a#hidden-content-delete1 削 除
-                  %img{id:"image-file2",height:"150",width:"150"}
-                    %a#hidden-content-delete2 削 除
-                  %img{id:"image-file3",height:"150",width:"150"}
-                    %a#hidden-content-delete3 削 除
-                    :javascript
-                      $(function(){
+                  =image_tag src="",id:"image-file",height:"150",width:"150"
+                  #hidden-content-delete 削 除
+                  =image_tag src="",id:"image-file1",height:"150",width:"150"
+                  #hidden-content-delete1 削 除
+                  =image_tag src="",id:"image-file2",height:"150",width:"150"
+                  #hidden-content-delete2 削 除
+                  =image_tag src="",id:"image-file3",height:"150",width:"150"
+                  #hidden-content-delete3 削 除
+                  :javascript
+                    $(function(){
                           product_images_attributes_0_src.addEventListener('change', function(e){
                             var file = e.target.files[0];
                             var fileReader = new FileReader();
@@ -38,7 +38,7 @@
                               img.src = dataUri;
                               img.style.opacity = 1;
                           }
-                            fileReader.readAsDataURL(file);
+                              fileReader.readAsDataURL(file);
                               $('#product_images_attributes_0_src').hide();
                               var block = document.getElementById('product_images_attributes_1_src');
                               block.style.display = "block";
