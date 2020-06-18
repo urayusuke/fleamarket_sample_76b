@@ -2,9 +2,11 @@
   .header__title
     =link_to root_path do
       = image_tag asset_path("material/logo/logo.png"),class:"header__title-image"
-    %input{type: "text",class:"header__title-text"}
-    .header__title-search
-      %input{type: "image",src:"#{asset_path "material/icon/icon-search 1.png"}",width: "20",height: "20"}
+    .header__form
+    = form_tag(searches_path,method: :get) do
+      = text_field_tag :search, "",placeholder:"何かお探しですか？",class:"form-text"
+      .header__title__search
+        = submit_tag "", :name => nil ,type: "image", src: "#{asset_path "material/icon/icon-search 1.png"}" ,width: "25",height: "25",class: "header__title__search--image"
   .header__list
     %ul.header__list-left
       %li 

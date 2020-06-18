@@ -34,4 +34,8 @@ class Product < ApplicationRecord
     Product.order('created_at desc, id desc').where('created_at >= ? and id > ?', created_at, id).reverse.first
   end
 
+  def self.search(search)
+    return Product.all unless search
+    Product.where(['name LIKE ?', "%#{search}%"])
+  end
 end

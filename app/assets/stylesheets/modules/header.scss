@@ -8,23 +8,26 @@
   background-color: #fff;
   &__title{
     display: flex;
-    justify-content: space-between;
   &-image{
     width: 135px;
     height: 40px;
     }
-  &-text{
+  form {
     width: 100%;
-    margin-left: 30px;
-    height: 36px;
+    display: flex;
+    #search{
+      width: 100%;
+      margin-left: 40px;
+      padding: 0 10px;
     }
-  &-search{
+  }
+  &__search{
+    width:40px;
+    height: 40px;
     background-color: $main-color;
-    width: 45px;
-    height: 36px;
     @include header;
     align-items: center;
-    }
+  }
   }
   &__list{
     display: flex;
