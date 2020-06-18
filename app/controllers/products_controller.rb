@@ -76,7 +76,7 @@ end
   end
 
   def refuse_to_edit
-    if current_user.id != @product.id
+    if current_user.id != @product.seller_id
       redirect_to root_path
     end
   end 
