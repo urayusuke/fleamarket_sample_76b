@@ -19,13 +19,19 @@
 
 @import "./modules/credit-new.scss";
 
+@import "./modules/category.scss";
+
 @import "modules/header";
 @import "modules/footer";
 
 @import "modules/index";
 @import "./modules/products";
 @import "./modules/purchase";
+
 @import "./modules/show.scss";
-@import "./modules/alert.scss";
 
 @import "modules/edit";
+
+@import "./modules/product-show.scss";
+@import "./modules/search";
+@import "./modules/alert.scss";

@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @products = Product.where(seller_id: current_user.id)
   end
 
   def logout
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
   
   def address
   end
-  
+
   def credit
     # credit = Credit.find_by(user_id: current_user.id)
     credit = Credit.where(user_id: current_user.id).first

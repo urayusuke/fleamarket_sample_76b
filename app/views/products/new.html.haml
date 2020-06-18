@@ -150,7 +150,7 @@
                   .listing-select-wrapper
                     .listing-select-wrapper__box
                     .select-area
-                      = f.select :category_id, @category_parent_array,{}, { class: 'product-info',id: 'parent_category' } 
+                      = f.select :category_id, @category_parent_array,{}, { class: 'product-info',id: 'parent_category'}
             -# jsで実装したときに使うためコメントアウトしてます
             -# .size-form
             -#   .size-form__name
@@ -165,7 +165,7 @@
                 %span.optional 任意
             .select-form
               .select-area
-                = f.text_field :bland_name, class: "product-info", placeholder: "例) シャネル", type: "text", maxlength: "40", required: "" 
+                = f.text_field :bland_name, class: "product-info", placeholder: "例) シャネル", type: "text", maxlength: "40"
             .status-form
               .status-form__name
                 %label.product-info 商品の状態

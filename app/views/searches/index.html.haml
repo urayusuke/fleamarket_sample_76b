@@ -1,0 +1,133 @@
+= render partial: "products/header"
+
+.search__container
+  .search__side
+    .search__select
+      %select#search_sort{name: "search_sort", type: "text", class: "search__select__text"}
+        %option{value: ""} 並び替え
+        %option{value: "1"} 価格の安い順
+        %option{value: "2"} 価格の高い順
+        %option{value: "3"} 出品の新しい順
+        %option{value: "4"} いいね！の多い数
+    .search__detail
+      .search__detail__title
+        詳細検索
+      .search__form__group
+        %label 
+          = icon("fa", "fas fa-plus")
+          %span キーワードを追加する
+        = text_field_tag "keyword", "", class: "search__form__field", placeholder: "例) 値下げ"  
+      .search__form__group  
+        %label 
+          = icon("fa", "fas fa-list-ul")
+          %span カテゴリーを選択する
+        .search__select  
+          %select#search_category{name: "search_category", type: "text", class: "search__select__text"}   
+            %option{value: ""} すべて
+      .search__form__group  
+        %label 
+          = icon("fa", "fas fa-tag")
+          %span ブランド名から探す
+        = text_field_tag "bland", "", class: "search__form__field", placeholder: "例) シャネル"  
+      .search__form__group  
+        %label 
+          = icon("fa", "fas fa-yen-sign")
+          %span 価格
+        .search__select  
+          %select#search_price{name: "search_price", type: "text", class: "search__select__text"} 
+            %option{value: ""} 選択してください
+            %option{value: "1"} 300 ~ 1000
+            %option{value: "2"} 1000 ~ 5000
+            %option{value: "3"} 5000 ~ 10000
+            %option{value: "4"} 10000 ~ 30000
+            %option{value: "5"} 30000 ~ 50000
+            %option{value: "6"} 50000 ~
+        = text_field_tag "min_price", "", class: "search__form__sub-field", placeholder: "¥Min"
+        %span ~
+        = text_field_tag "max_price", "", class: "search__form__sub-field", placeholder: "¥Max"   
+      .search__form__group  
+        %label 
+          = icon("fa", "fas fa-star")
+          %span 商品の状態
+        .search__check-boxes
+          .search__check-box        
+            = check_box_tag "product-status", ""
+            = label_tag :check1, "すべて", class:"search__check-box__label"
+          .search__check-box   
+            = check_box_tag "product-status", "" 
+            = label_tag :check2, "新品、未使用", class:"search__check-box__label"
+          .search__check-box   
+            = check_box_tag "product-status", "" 
+            = label_tag :check3, "未使用に近い", class:"search__check-box__label"
+          .search__check-box   
+            = check_box_tag "product-status", "" 
+            = label_tag :check4, "目立った傷や汚れなし", class:"search__check-box__label"
+          .search__check-box   
+            = check_box_tag "product-status", "" 
+            = label_tag :check5, "やや傷や汚れあり", class:"search__check-box__label"
+          .search__check-box   
+            = check_box_tag "product-status", "" 
+            = label_tag :check6, "傷や汚れあり", class:"search__check-box__label"
+          .search__check-box   
+            = check_box_tag "product-status", "" 
+            = label_tag :check7, "全体的に状態が悪い", class:"search__check-box__label"
+      .search__form__group
+        %label 
+          = icon("fa", "fas fa-truck")
+          %span 配送料の負担
+        .search__check-boxes
+          .search__check-box
+            = check_box_tag "product-status", "" 
+            = label_tag :check1, "すべて", class:"search__check-box__label"
+          .search__check-box
+            = check_box_tag "product-status", "" 
+            = label_tag :check2, "着払い(購入者負担)", class:"search__check-box__label"
+          .search__check-box
+            = check_box_tag "product-status", "" 
+            = label_tag :check3, "送料込み(出品者負担)", class:"search__check-box__label"
+      .search__form__group  
+        %label 
+          = icon("fa", "fas fa-shopping-cart")
+          %span 販売状況
+        .search__check-boxes
+          .search__check-box
+            = check_box_tag "product-status", "" 
+            = label_tag :check1, "すべて", class:"search__check-box__label"
+          .search__check-box
+            = check_box_tag "product-status", "" 
+            = label_tag :check2, "販売中", class:"search__check-box__label"
+          .search__check-box
+            = check_box_tag "product-status", "" 
+            = label_tag :check3, "売り切れ", class:"search__check-box__label"
+      .search__btn__area
+        %button.search__btn__area__clear
+          クリア
+        %button.search__btn__area__finish                   
+          完了
+
+  .search__content
+    - if @products.present?
+      .search__result-head
+        = @search
+        %span.search__result-head-text の検索結果
+      .search__result-number
+        = "1-#{@products.count}件表示"
+      .search__groups
+        - @products.each do |product|
+          .search__group
+            = link_to product_path(product.id) ,class:"search__group-link" do
+              = image_tag product.images.first.src.url, class:"search__group__image"
+              .search__group__text
+                .search__group__text__detail
+                  = product.name
+              .search__group__price
+                = "¥#{product.price}"
+    - else
+      .search__result-head
+        = @search
+        %span.search__result-head-text の検索結果 
+      .search__miss
+        該当する商品が見つかりません。検索条件を変えて、再度お試しください。   
+
+      
+= render partial: "products/footer"

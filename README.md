@@ -38,6 +38,7 @@
 |delively_cost_id|integer|null: false|
 |prefecture_id|integer|null: false|
 |delively_days_id|integer|null: false|
+|delively_method_id|integer|null: false|
 
 ### Association
 - belongs_to :category
@@ -45,6 +46,7 @@
 - belongs_to_active_hash :delively_cost
 - belongs_to_active_hash :prefecture
 - belongs_to_active_hash :delively_days
+- belongs_to_active_hash :delively_method
 
 - belongs_to :seller, class_name: 'User', foreign_key: 'seller_id'
 - belongs_to :buyer, class_name: 'User', optional: true, foreign_key: 'buyer_id'
@@ -69,7 +71,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |product_id|integer|null: false, foreign_key: true|
-|name|string|null: false|
+|src|string|null: false|
 
 ### Association
 - belongs_to :product
@@ -97,7 +99,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
-|code|string|null: false|
+|customer_id|string|null: false|
+|card_id|string|null: false|
 
 ### Association
 - belongs_to :user

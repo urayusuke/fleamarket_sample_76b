@@ -1,0 +1,99 @@
+.categories-breadcrumb {
+  width: 100%;
+  height: 56px;
+  line-height: 56px;
+  border-top: 1px solid #eee;
+  padding: 0 120px;
+  background-color: #fff;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, .16);
+  &__list {
+    display: flex;
+    li {
+      font-size: 0.9rem;
+      margin: 0 6px;
+      a {
+        color: #000;
+        text-decoration: none;
+        &:hover {
+          color: $main-color;
+        }
+      }
+    }
+    &--this {
+      font-weight: bold;
+    }
+  }
+}
+
+.categories {
+  width: 700px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 48px 0;
+  &__top {
+    font-size: 0.9rem;
+  }
+  &__ancestors {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    margin-bottom: 16px;
+    &__name {
+      display: block;
+      height: 40px;
+      line-height: 40px;
+      background-color: #fff;
+      padding: 0 24px;
+      margin: 5px;
+      text-decoration: none;
+      color: #000;
+      border-radius: 4px;
+      box-shadow: 1px 1px 1px 1px rgba(14,14,14,0.0580392);
+      &:hover {
+        background-color: $main-color;
+        color: #fff;
+      }
+    }
+  }
+  &__sub {
+    background-color: $main-color;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 6px 30px;
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+  &__list {
+    background-color: #fff;
+    padding: 24px;
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+    &__all {
+      display: block;
+      margin: 0 0 8px;
+      text-decoration: none;
+      color: blue;
+    }
+    h4 {
+      margin: 0;
+    }
+    &__box {
+      padding: 8px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      &__name {
+        display: block;
+        width: 300px;
+        margin: 0 0 8px;
+        text-decoration: none;
+        color: blue;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

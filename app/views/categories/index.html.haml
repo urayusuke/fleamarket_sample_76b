@@ -1,0 +1,35 @@
+= render partial: "products/header"
+
+.categories-breadcrumb
+  %ul.categories-breadcrumb__list
+    %li
+      = link_to "FURIMA", root_path
+    %li
+      = icon("fa", "angle-right")
+    %li
+      = link_to categories_path do
+        カテゴリ一覧
+
+.categories
+  .categories__top
+    %h2 カテゴリー一覧
+  .categories__ancestors
+    - @ancestries.each do |ancestry|
+      = link_to({ anchor: "#{ancestry.name}" }, class: "categories__ancestors__name") do
+        = ancestry.name
+  - @ancestries.each do |ancestry|
+    .categories__sub
+      = link_to categories_path, id: "#{ancestry.name}" do
+        = ancestry.name
+    .categories__list
+      = link_to categories_path, class: "categories__list__all" do
+        すべて
+      - ancestry.children.each do |child|
+        %h4
+          = child.name
+        .categories__list__box
+          - child.children.each do |grandchild|
+            = link_to categories_path, class: "categories__list__box__name" do
+              = grandchild.name
+
+= render partial: "products/footer"

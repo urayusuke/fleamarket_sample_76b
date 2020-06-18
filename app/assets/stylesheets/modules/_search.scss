@@ -1,0 +1,163 @@
+.search__container {
+  width: 1020px;
+  margin: 40px auto 0;
+  display: flex;
+  .search__side {
+    width: 280px;
+    margin-right: 40px;
+    .search__select {
+      height: 48px;
+      background-color: white;
+      &__text {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 0 16px;
+      }
+    }
+    .search__detail {
+      background-color: white;
+      margin-top: 40px;
+      padding: 16px;
+      &__title {
+        font-weight: bold;
+        padding: 10px 0 0 10px;
+      }
+      .search__form__group {
+        margin-top: 40px;
+        label {
+          color: #333;
+          display: flex;
+          font-weight: bold;
+          margin-bottom: 8px;
+          i {
+            font-size: 20px;
+            margin-right: 8px;
+            color: #888;
+          }
+          span {
+            font-size: 14px;            
+          }
+        }
+        .search__form__field {
+          width: 100%;
+          height: 48px;
+          padding: 10px 16px 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        .search__form__sub-field {
+          width: 45%;
+          height: 48px;
+          padding: 10px 16px 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          margin-top: 5px;
+        }
+        .search__check-boxes {
+          display: flex;
+          flex-wrap: wrap;
+        }
+          .search__check-box {
+            display: block;
+            width: 48%;
+            display: flex;
+            position: relative;
+            
+            #product-status {
+              position: absolute;
+              top: 25%;
+              transform: scale(1.5);
+            }
+            &__label {
+              padding:10px 5px 0 25px;
+              font-weight: normal;
+              font-size: 14px;
+            }
+          }
+      }
+      .search__btn__area {
+        padding-top: 40px;
+        display: flex;
+        &__clear {
+          width: 45%;
+          background-color: #aaa;
+          color: white;
+          font-size: 14px;
+          border-radius: 4px;
+          line-height: 48px;
+
+        }
+        &__finish {
+          margin-left: 20px;
+          width: 45%;
+          background-color: $main-color;
+          color: white;
+          font-size: 14px;
+          border-radius: 4px;
+          line-height: 48px;
+        }
+      }
+    }
+  }
+  .search__content {
+    width: 780px;
+    height: 1000px;
+    .search__result-head {
+      font-size: 22px;
+      margin-bottom: 8px;
+      font-weight: bold;
+      &-text {
+        font-size: 18px;
+        margin-left: 4px;
+        font-weight: 400;
+      }
+    }
+    .search__result-number {
+      margin: 16px 0;
+      font-size: 12px;
+      color: #888;
+    }
+    .search__groups {
+      display: flex;
+      flex-wrap: wrap;
+      .search__group {
+        margin: 0 20px 20px 0;
+        position: relative;
+        &-link {
+          text-decoration: none;
+          color: black;
+        }
+        &__image {
+          height: 160px;
+          width: 160px;
+        }
+        &__text {
+          height: 58px;
+          width: 160px;
+          padding: 8px 12px;
+          background-color: #fff;
+          &__detail {
+            font-size: 14px;
+            overflow: hidden;
+          }
+        }
+        &__price {
+          position: absolute;
+          top: 120px;
+          left: 0;
+          padding: 4px 12px 4px 8px;
+          border-radius: 0 16px 16px 0;
+          background-color: rgba(0,0,0,0.3);
+          color: #fff;
+          font-weight: 600;
+        }
+      }
+    }
+    .search__miss {
+      font-size: 12px;
+      margin-top: 20px;
+    }
+  }
+}
