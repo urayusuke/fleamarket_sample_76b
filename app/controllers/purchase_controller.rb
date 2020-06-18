@@ -6,7 +6,7 @@ class PurchaseController < ApplicationController
   def show
     if @product.buyer_id.present?
       redirect_to root_path, alert: "この商品は購入済です"
-    elsif @product.seller_id.present?
+    elsif @product.seller_id == current_user.id
       redirect_to root_path, alert: "あなたは出品者です"
     else
       credit = Credit.find_by(user_id: current_user.id)
