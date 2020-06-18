@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, except: [:index, :new, :create,:get_category_children,:get_category_grandchildren]
   before_action :move_to_index, except: [:index, :show]
   before_action :refuse_to_edit, only: :edit
+  before_action :set_category, only: [:new, :create, :edit, :update]
 
   def index
     @products = Product.includes(:images).order('created_at DESC')
@@ -15,7 +16,6 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.images.new
     3.times{@product.images.build}
-    @category_parent_array = Category.where(ancestry: nil).pluck(:name).unshift("選択して下さい")
 end
 
   def get_category_children
@@ -80,4 +80,9 @@ end
       redirect_to root_path
     end
   end 
+
+  def set_category
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name)
+  end
+  
 end
