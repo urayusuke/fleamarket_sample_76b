@@ -107,8 +107,7 @@
               %p= product.name
             .category__text__space__price
               %p
-                = product.price
-                %span 円
+                = tax_included_price(product.price)
             .category__text__space__tax
               %p (税込)
     .category__title
@@ -126,8 +125,7 @@
               %p= product.name
             .category__text__space__price
               %p
-                = product.price
-                %span 円
+                = tax_included_price(product.price)
             .category__text__space__tax
               %p (税込)
 
