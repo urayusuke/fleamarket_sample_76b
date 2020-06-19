@@ -13,19 +13,80 @@
             .post__drop__box__container
               .prev-content
               .label-content
-                -# = f.text_field :content, class: "label-box", rows: "6", maxlength: "1000", required: "", placeholder: "" 
-                -# .label-box__text-visible クリックしてファイルをアップロード
               .hidden-content
+                .hidden-content-image
+                  - @product.images.first(4).each_with_index do |image,i|
+                    %img{src:image.src,id:"image-edit#{i}",width:"150"}
+                    %a{id:"hidden-content-edit#{i}"} 編  集
+                    :javascript
+                      $(function(){
+                        $("a").on('click',function(){
+                          var obj = document.getElementById('edit');
+                          obj.id = "edit0";
+                          var img = document.getElementById('edit0');
+                          img.style.display = "inline";
+                            edit0.addEventListener('change', function(e){
+                              var file = e.target.files[0];
+                              var fileReader = new FileReader();
+                            fileReader.onload = function() {
+                              var dataUri = this.result;
+                              var img = document.getElementById('image-edit0');
+                              img.src = dataUri;
+                            }
+                              fileReader.readAsDataURL(file);
+                            });
+                          });
+                        $("a").on('click',function(){
+                          var obj = document.getElementById('edit');
+                          obj.id = "edit1";
+                          var img = document.getElementById('edit1');
+                          img.style.display = "block";
+                            edit1.addEventListener('change', function(e){
+                              var file = e.target.files[0];
+                              var fileReader = new FileReader();
+                              fileReader.onload = function() {
+                                var dataUri = this.result;
+                                var img = document.getElementById('image-edit1');
+                                img.src = dataUri;
+                            }
+                              fileReader.readAsDataURL(file);
+                              });
+                              });
+                          $("a").on('click',function(){
+                          var obj = document.getElementById('edit');
+                          obj.id = "edit2";
+                          var img = document.getElementById('edit2');
+                          img.style.display = "block";
+                            edit2.addEventListener('change', function(e){
+                              var file = e.target.files[0];
+                              var fileReader = new FileReader();
+                              fileReader.onload = function() {
+                                var dataUri = this.result;
+                                var img = document.getElementById('image-edit2');
+                                img.src = dataUri;
+                            }
+                              fileReader.readAsDataURL(file);
+                              });
+                              });
+                          $("a").on('click',function(){
+                            var obj = document.getElementById('edit');
+                            obj.id = "edit3";
+                            var img = document.getElementById('edit3');
+                            img.style.display = "block";
+                              edit3.addEventListener('change', function(e){
+                                var file = e.target.files[0];
+                                var fileReader = new FileReader();
+                                fileReader.onload = function() {
+                                  var dataUri = this.result;
+                                  var img = document.getElementById('image-edit3');
+                                  img.src = dataUri;
+                                }
+                                fileReader.readAsDataURL(file);
+                              });
+                            });
+                          });
                 = f.fields_for :images do |i|
-                  .js-file_group{"data-index":"= image.index"}
-                    = i.file_field :src, class: "js-file"
-                    %span.js-remove 削除
-                    - if @product.persisted? 
-                      = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy' 
-                  - if @product.persisted? 
-                    .js-file_group{"data-index":"= @product.images.count"}
-                      = file_field_tag :src, name: "product[images_attributes][#{@product.images.count}][src]", class: 'js-file'
-                      .js-remove 削除
+                  =i.file_field :src,id:"edit"
         %hr.underline
         .product-description
           .product-description__form
@@ -54,14 +115,20 @@
                   .listing-select-wrapper
                     .listing-select-wrapper__box
                     .select-area
-                      = f.select :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
-            .size-form
-              .size-form__name
-                %label.product-info サイズ
-                %span.necessary 必須
-            -# .select-form
-            -#   .select-area
-            -#     = f.collection_select :status_id, Status.all, :id, :name ,class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+                      = f.select :category_id, @category_parent_array, {selected:@product.category.parent.parent.name}, { class: 'product-info',id: 'parent_category' } 
+                    .select-area#children_wrapper
+                      = f.select :category_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @product.category.parent.id}),{}, {id:'child_category'}
+                    .select-area#grandchildren_wrapper
+                      = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @product.category.id}),{}, {id:'grandchild_category'}
+
+            -# jsで実装したときに使うためコメントアウトしてます
+            -# .size-form
+            -#   .size-form__name
+            -#     %label.product-info サイズ
+            -#     %span.necessary 必須
+              -# .select-form
+              -#   .select-area
+              -#     = f.collection_select :status_id, Status.all, :id, :name ,class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
             .brand-form
               .brand-form__name
                 %label.product-info ブランド
@@ -75,7 +142,7 @@
                 %span.necessary 必須
             .select-form
               .select-area
-                = f.collection_select :product_status_id, ProductStatus.all ,:id, :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+                = f.collection_select :product_status_id, ProductStatus.all, :id, :name, class: 'product-info', required: ""
         %hr.underline
         .about-delivery
           .about-delivery__form
@@ -88,28 +155,28 @@
                 %span.necessary 必須
             .select-form
               .select-area
-                = f.collection_select :delively_cost_id, DelivelyCost.all, :id, :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+                = f.collection_select :delively_cost_id, DelivelyCost.all, :id, :name, class: 'product-info', required: ""
             .method-form
               .method-form__name
                 %label.product-info 配送の方法
                 %span.necessary 必須
-            -# .select-form
-            -#   .select-area
-            -#     = f.collection_select :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+            .select-form
+              .select-area
+                = f.collection_select :delively_method_id, DelivelyMethod.all, :id, :name, class: 'product-info', required: ""
             .area-form
               .area-form__name
                 %label.product-info 発送元の地域
                 %span.necessary 必須
             .select-form
               .select-area
-                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, class: 'product-info', required: ""
             .days-form
               .days-form__name
                 %label.product-info 発送までの日数
                 %span.necessary 必須
             .select-form
               .select-area 
-                = f.collection_select :delively_days_id, DelivelyDays.all, :id, :name, class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+                = f.collection_select :delively_days_id, DelivelyDays.all, :id, :name, class: 'product-info', required: ""
         %hr.underline
         .price
           .price__form
@@ -128,14 +195,11 @@
                     = f.number_field :price, class:"yen", placeholder: "0", type: "number", autocomplete: "off", min: "300", max: "9999999", required: "" 
               .fee-form
                 .name 販売手数料(10%)
-                %span.value ー
               %hr.underline
               .return-form
                 .name 販売利益
-                %span.value ー
         .btn-form
-          = f.submit "出品する", class: "product-btn"
-          %button.save-btn{type: "button"} 下書きに保存
+          = f.submit "変更する", class: "product-btn"
           %a.back
             もどる 
         .attention 

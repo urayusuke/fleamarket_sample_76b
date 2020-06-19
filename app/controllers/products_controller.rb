@@ -16,7 +16,10 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.images.new
     3.times{@product.images.build}
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name)
+  end
 end
+
 
   def get_category_children
     @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
@@ -44,6 +47,35 @@ end
   end
 
   def edit
+    if @product.images.count == 1
+      @product.images.new
+      2.times{@product.images.build}
+    end
+    if @product.images.count == 2
+      @product.images.new
+      1.times{@product.images.build}
+    end
+    if @product.images.count == 3
+      @product.images.new
+    end
+
+    grandchild_category = @product.category
+    child_category = grandchild_category.parent
+
+    @category_parent_array = ["選択してください"]
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
+
+    @category_children_array = []
+    Category.where(ancestry: child_category.ancestry).each do |children|
+      @category_children_array << children
+    end
+
+    @category_grandchildren_array = []
+    Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
+      @category_grandchildren_array << grandchildren
+    end
   end
 
   def update
