@@ -18,7 +18,6 @@ class ProductsController < ApplicationController
     3.times{@product.images.build}
     @category_parent_array = Category.where(ancestry: nil).pluck(:name)
   end
-end
 
 
   def get_category_children
