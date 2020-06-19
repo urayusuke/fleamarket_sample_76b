@@ -3,6 +3,8 @@
   .product-ex
     .product-ex__main
       = form_for @product do |f|
+        -# 今後実装するかもしれないので一旦コメントアウト
+        -# = render "devise/shared/error_messages", resource: @product
         .product-ex__main__input-form
           .product-ex__main__input-form__image
             .product-ex__main__input-form__image__image-title
@@ -13,8 +15,6 @@
             .post__drop__box__container
               .prev-content
               .label-content#image-box
-                -# = f.text_field :content, class: "image-file", rows: "6", maxlength: "1000", required: "", placeholder: "" 
-                -# .label-box__text-visible クリックしてファイルをアップロード
               .hidden-content
                 = icon("fas", "camera")
                 %p クリックしてファイルをアップロード
@@ -150,15 +150,7 @@
                   .listing-select-wrapper
                     .listing-select-wrapper__box
                     .select-area
-                      = f.select :category_id, @category_parent_array,{}, { class: 'product-info',id: 'parent_category'}
-            -# jsで実装したときに使うためコメントアウトしてます
-            -# .size-form
-            -#   .size-form__name
-            -#     %label.product-info サイズ
-            -#     %span.necessary 必須
-              -# .select-form
-              -#   .select-area
-              -#     = f.collection_select :status_id, Status.all, :id, :name ,class: "product-info", placeholder: "選択して下さい", type: "text", maxlength: "40", required: "" 
+                      = f.select :category_id, @category_parent_array,{}, { class: 'product-info',id: 'parent_category', required:""}
             .brand-form
               .brand-form__name
                 %label.product-info ブランド
