@@ -138,6 +138,28 @@
         &__image {
           height: 160px;
           width: 160px;
+          &__inner {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-color: #ea352d transparent transparent transparent;
+            border-width: 80px 80px 0 0;
+            z-index: 1;
+            &__sold {
+              transform: rotate(-45deg);
+              position: absolute;
+              top: -65px;
+              left: 5px;
+              z-index: 2;
+              color: #fff;
+              font-size: 14px;
+              font-weight: bold;
+              letter-spacing: 2px;
+            }
+          }
         }
         &__text {
           height: 58px;
