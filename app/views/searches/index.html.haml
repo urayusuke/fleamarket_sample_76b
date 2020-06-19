@@ -1,143 +1,41 @@
 = render partial: "products/header"
 
 .search__container
-  .search__side
-    = search_form_for(@q,url: detail_search_searches_path) do |f|
-      .search__select
-        = f.select( :sorts, { '並び替え': 'id desc', '価格の安い順': 'price asc', '価格の高い順': 'price desc', '出品の古い順': 'updated_at asc', '出品の新しい順': 'updated_at desc' } , { onchange: 'this.form.submit()'}, {class: "search__select__text"} )
-      .search__detail
-        .search__detail__title
-          詳細検索
-        .search__form__group
-          %label 
-            = icon("fa", "fas fa-plus")
-            %span キーワードを追加する
-          = f.search_field :name_cont_any, placeholder: "例）値下げ", class: "search__form__field"
-        -# .search__form__group  
-        -#   %label 
-        -#     = icon("fa", "fas fa-list-ul")
-        -#     %span カテゴリーを選択する
-        -#   .search__select  
-        -#     = f.select :category_id, @category_parent_array,{}, { class: 'search__select__text',id: 'parent_category'}
-        .search__form__group  
-          %label 
-            = icon("fa", "fas fa-tag")
-            %span ブランド名から探す
-          = f.search_field :bland_name_cont, placeholder: "例) シャネル", class: "search__form__field"
-        .search__form__group  
-          %label 
-            = icon("fa", "fas fa-yen-sign")
-            %span 価格
-          = f.search_field :price_gteq, placeholder: "¥ Min", class: "search__form__sub-field"
-          %span ~
-          = f.search_field :price_lteq, placeholder: "¥ Max", class: "search__form__sub-field" 
-        .search__form__group  
-          %label 
-            = icon("fa", "fas fa-star")
-            %span 商品の状態
-          .search__check-boxes
-            .search__check-box
-              %label
-                %input{type:"checkbox", class:"search__check-box__label" }      
-                .search_check-box__text 
-                  = 'すべて'
-            .search__check-box
-              %label
-                = f.check_box :product_status_id_eq_any, { multiple: true ,class:"search__check-box__label" }, 1, ''
-                .search_check-box__text 
-                  = '新品、未使用'
-            .search__check-box
-              %label
-                = f.check_box :product_status_id_eq_any, { multiple: true ,class:"search__check-box__label" }, 2, ''   
-                .search_check-box__text 
-                  = '未使用に近い'
-            .search__check-box
-              %label
-                = f.check_box :product_status_id_eq_any, { multiple: true ,class:"search__check-box__label" }, 3, ''   
-                .search_check-box__text 
-                  = '目立った傷や汚れなし'
-            .search__check-box
-              %label
-                = f.check_box :product_status_id_eq_any, { multiple: true ,class:"search__check-box__label" }, 4, ''   
-                .search_check-box__text 
-                  = 'やや傷や汚れあり'
-            .search__check-box
-              %label
-                = f.check_box :product_status_id_eq_any, { multiple: true ,class:"search__check-box__label" }, 5, ''   
-                .search_check-box__text 
-                  = '傷や汚れあり'
-            .search__check-box
-              %label
-                = f.check_box :product_status_id_eq_any, { multiple: true ,class:"search__check-box__label" }, 6, ''   
-                .search_check-box__text 
-                  = '全体的に状態が悪い'                        
-        .search__form__group
-          %label 
-            = icon("fa", "fas fa-truck")
-            %span 配送料の負担
-          .search__check-boxes
-            .search__check-box
-              %label
-                %input{type:"checkbox", class:"search__check-box__label" }      
-                .search_check-box__text 
-                  = 'すべて'
-            .search__check-box
-              %label
-                = f.check_box :delively_cost_id_eq_any, { multiple: true ,class:"search__check-box__label" }, 1, ''
-                .search_check-box__text 
-                  = '着払い(購入者負担)'
-            .search__check-box
-              %label
-                = f.check_box :delively_cost_id_eq_any, { multiple: true ,class:"search__check-box__label" }, 2, ''
-                .search_check-box__text 
-                  = '送料込み(出品者負担)'        
-        .search__form__group  
-          %label 
-            = icon("fa", "fas fa-shopping-cart")
-            %span 販売状況
-          .search__check-boxes
-            .search__check-box
-              %label
-                %input{type:"checkbox", class:"search__check-box__label" }
-                .search_check-box__text      
-                  = 'すべて'
-            .search__check-box
-              %label
-                = f.check_box :buyer_id_null, { multiple: true ,class: "search__check-box__label" }
-                .search_check-box__text
-                  = '販売中'
-            .search__check-box
-              %label
-                = f.check_box :buyer_id_not_null, { multiple: true ,class: "search__check-box__label"}
-                .search_check-box__text
-                  = '売り切れ'        
-        .search__btn__area
-          = link_to "クリア", "/searches",type: "button",class: "search__btn__area__clear"
-          = f.submit "完了" ,class:"search__btn__area__finish"
+  = render partial: "searches/side"
 
   .search__content
     - if @products.present? && @search.present?
       .search__result-head
-        = @search
         %span.search__result-head-text 検索結果
       .search__result-number
         = "1-#{@products.count}件表示"
       .search__groups
         - @products.each do |product|
-          .search__group
-            = link_to product_path(product.id) ,class:"search__group-link" do
-              = image_tag product.images.first.src.url, class:"search__group__image"
-              .search__group__text
-                .search__group__text__detail
-                  = product.name
-              .search__group__price
-                = "¥#{product.price}"
+          - if product.buyer_id == nil
+            .search__group
+              = link_to product_path(product.id) ,class:"search__group-link" do
+                = image_tag product.images.first.src.url, class:"search__group__image"
+                .search__group__text
+                  .search__group__text__detail
+                    = product.name
+                .search__group__price
+                  = "¥#{product.price}"
+          - else 
+            .search__group
+              = link_to product_path(product.id) ,class:"search__group-link" do
+                = image_tag product.images.first.src.url, class:"search__group__image"
+                .search__group__image__inner
+                  .search__group__image__inner__sold SOLD
+                .search__group__text
+                  .search__group__text__detail
+                    = product.name
+                .search__group__price
+                  = "¥#{product.price}"
+                    
     - else
       .search__result-head
-        = @search
         %span.search__result-head-text 検索結果 
       .search__miss
         該当する商品が見つかりません。検索条件を変えて、再度お試しください。   
-
       
 = render partial: "products/footer"
