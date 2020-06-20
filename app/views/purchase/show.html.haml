@@ -7,7 +7,8 @@
     .purchase-product
       .purchase-product__inner
         .purchase-product__box
-          = image_tag asset_path("material/icon/icon-01.png"), class:"purchase-product__box__image"
+          - @product.images.first(1).each do |image|
+            = image_tag image.src.url, class:"purchase-product__box__image"
           .purchase-product__box__detail
             %p.purchase-product__box__detail__buy-name
               = @product.name

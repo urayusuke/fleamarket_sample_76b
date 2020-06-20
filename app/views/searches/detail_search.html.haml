@@ -4,7 +4,7 @@
   = render partial: "searches/side"
 
   .search__content
-    - if @products.present? && @search.present?
+    - if @products.present? 
       .search__result-head
         %span.search__result-head-text 検索結果
       .search__result-number
@@ -20,7 +20,7 @@
                     = product.name
                 .search__group__price
                   = "¥#{product.price}"
-          - else 
+          -else 
             .search__group
               = link_to product_path(product.id) ,class:"search__group-link" do
                 = image_tag product.images.first.src.url, class:"search__group__image"
@@ -31,11 +31,11 @@
                     = product.name
                 .search__group__price
                   = "¥#{product.price}"
-                    
     - else
       .search__result-head
         %span.search__result-head-text 検索結果 
       .search__miss
         該当する商品が見つかりません。検索条件を変えて、再度お試しください。   
+
       
 = render partial: "products/footer"
