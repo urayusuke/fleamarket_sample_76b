@@ -3,6 +3,6 @@
 .purchase-done
   %h2 購入が完了しました！
   %h2 ありがとうございます！！
-  = link_to "ユーザーマイページに戻る", user_path(current_user.id)
+  = link_to "ユーザーマイページに戻る", user_path(current_user.id), class: "purchase-done__back"
 
 = render partial: "products/footer_sub"
