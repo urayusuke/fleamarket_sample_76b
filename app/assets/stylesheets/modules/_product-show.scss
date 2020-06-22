@@ -10,7 +10,7 @@
     display: flex;
     &__item {
       font-size: 0.9rem;
-      margin: 0 6px;
+      margin: 0 4px;
       &__link {
         color: #000;
         text-decoration: none;
@@ -20,7 +20,9 @@
       }
     }
     &--this {
+      font-size: 0.9rem;
       font-weight: bold;
+      margin-left: 4px;
     }
   }
 }

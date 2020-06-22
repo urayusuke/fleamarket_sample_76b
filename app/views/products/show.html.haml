@@ -5,22 +5,22 @@
     %li.product-breadcrumb__list__item
       = link_to "FURIMA", root_path, class: "product-breadcrumb__list__item__link"
     %li.product-breadcrumb__list__item
-      = icon("fa", "angle-right")
+      %span &rsaquo;
     %li.product-breadcrumb__list__item
       = link_to categories_path(anchor: "#{@product.category.parent.parent.name}"), class: "product-breadcrumb__list__item__link" do
         = @product.category.parent.parent.name
     %li.product-breadcrumb__list__item
-      = icon("fa", "angle-right")
+      %span &rsaquo;
     %li.product-breadcrumb__list__item
       = link_to categories_path(anchor: "#{@product.category.parent.parent.name}"), class: "product-breadcrumb__list__item__link" do
         = @product.category.parent.name
     %li.product-breadcrumb__list__item
-      = icon("fa", "angle-right")
+      %span &rsaquo;
     %li.product-breadcrumb__list__item
       = link_to categories_path(anchor: "#{@product.category.parent.parent.name}"), class: "product-breadcrumb__list__item__link" do
         = @product.category.name
     %li.product-breadcrumb__list__item
-      = icon("fa", "angle-right")
+      %span &rsaquo;
     %li.product-breadcrumb__list--this
       = @product.name
 
