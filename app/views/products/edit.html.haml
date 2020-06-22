@@ -16,7 +16,7 @@
               .hidden-content
                 .hidden-content-image
                   - @product.images.first(4).each_with_index do |image,i|
-                    %img{src:image.src,id:"image-edit#{i}",width:"150"}
+                    %img{src:image.src,onerror: "this.onerror = null; this.src=' ';",id:"image-edit#{i}"}
                     %a{id:"hidden-content-edit#{i}"} 編  集
                     :javascript
                       $(function(){
