@@ -105,3 +105,14 @@
 ### Association
 - belongs_to :user
 
+## ⑦commentsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|product_id|integer|null: false, foreign_key: true|
+|text|string||
+
+### Association
+- belongs_to :user
+- belongs_to :product
+
