@@ -1,14 +1,6 @@
 = render partial: "products/header"
-
-.categories-breadcrumb
-  %ul.categories-breadcrumb__list
-    %li
-      = link_to "FURIMA", root_path
-    %li
-      = icon("fa", "angle-right")
-    %li
-      = link_to categories_path do
-        カテゴリ一覧
+- breadcrumb :category
+= breadcrumbs pretext: "",separator: " &rsaquo; "
 
 .categories
   .categories__top

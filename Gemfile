@@ -89,3 +89,4 @@ gem 'ancestry'
 gem 'fog-aws'
 gem 'rails-i18n'
 gem 'ransack'
+gem "gretel"
