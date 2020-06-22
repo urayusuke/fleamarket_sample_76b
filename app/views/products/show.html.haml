@@ -56,7 +56,7 @@
 
     .product-show__content__explanation
       %p
-        = @product.content
+        = simple_format(@product.content)
 
     .product-show__content__info
       %table.product-show__content__info__table
