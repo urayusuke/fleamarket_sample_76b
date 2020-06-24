@@ -116,3 +116,27 @@
 - belongs_to :user
 - belongs_to :product
 
+# 担当機能
+
+## トップページの実装
+[![Image from Gyazo](https://i.gyazo.com/569a524331f2592d1792fa98085df86d.jpg)](https://gyazo.com/569a524331f2592d1792fa98085df86d)
+[![Image from Gyazo](https://i.gyazo.com/a1988a94036349d7a243ee6ac2753111.jpg)](https://gyazo.com/a1988a94036349d7a243ee6ac2753111)
+[![Image from Gyazo](https://i.gyazo.com/e537800bf8b623f7e371e1f709ded4cf.jpg)](https://gyazo.com/e537800bf8b623f7e371e1f709ded4cf)
+[![Image from Gyazo](https://i.gyazo.com/44cae5be4d413958aa55b6a112bc30e2.png)](https://gyazo.com/44cae5be4d413958aa55b6a112bc30e2)
+[![Image from Gyazo](https://i.gyazo.com/803599262b4c58d673a5fc6bb937006d.jpg)](https://gyazo.com/803599262b4c58d673a5fc6bb937006d)
+[![Image from Gyazo](https://i.gyazo.com/206e9e16edc07de1d61254ba8361bbb8.png)](https://gyazo.com/206e9e16edc07de1d61254ba8361bbb8)
+
+## トップページの商品一覧表示 
+[![Image from Gyazo](https://i.gyazo.com/c196eb9c67659827343cfd33e6e9975e.jpg)](https://gyazo.com/c196eb9c67659827343cfd33e6e9975e)
+
+## カテゴリー機能のJS実装
+[![Image from Gyazo](https://i.gyazo.com/4468012e9091ae682cda40cd962e935c.gif)](https://gyazo.com/4468012e9091ae682cda40cd962e935c)
+[![Image from Gyazo](https://i.gyazo.com/a29d02a947e51fa4c6987eea16037dfc.gif)](https://gyazo.com/a29d02a947e51fa4c6987eea16037dfc)
+
+## 出品機能の画像表示、削除
+[![Image from Gyazo](https://i.gyazo.com/102a2c721800df175c69cd66bb0121f8.gif)](https://gyazo.com/102a2c721800df175c69cd66bb0121f8)
+[![Image from Gyazo](https://i.gyazo.com/183e2365119448b3b6ddd2d087e7b09c.gif)](https://gyazo.com/183e2365119448b3b6ddd2d087e7b09c)
+
+## 商品情報編集の画像編集
+[![Image from Gyazo](https://i.gyazo.com/ff2a22b4f7f59a926e95fe9caee75649.gif)](https://gyazo.com/ff2a22b4f7f59a926e95fe9caee75649)
+
