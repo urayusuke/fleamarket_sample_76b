@@ -35,7 +35,7 @@
   - アジャイル型開発（スクラム）
   - Trelloによるタスク管理
 
-# フリマアプリ_DB設計 (76期/チームB) 
+## DB設計
 
 ## ①usersテーブル
 |Column|Type|Options|
@@ -152,7 +152,9 @@
 - belongs_to :user
 - belongs_to :product
 
+
 # 担当機能
+
 
 ## トップページの実装
 [![Image from Gyazo](https://i.gyazo.com/569a524331f2592d1792fa98085df86d.jpg)](https://gyazo.com/569a524331f2592d1792fa98085df86d)
